@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintage Vibes - Ρούχα & Αξεσουάρ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="website icon" href="img/Retro-secret.jpeg" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f4ed; /* A warm, off-white background */
+            color: #4a4a4a; /* Dark gray for text */
+        }
+        h1, h2, h3, .vintage-font {
+            font-family: 'Playfair Display', serif; /* Elegant serif font for headings */
+        }
+        .vintage-button {
+            background-color: #a87b5a; /* Muted brown/gold */
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .vintage-button:hover {
+            background-color: #8c6347;
+        }
+        .card-shadow {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        .sepia-filter {
+            filter: sepia(0.6) saturate(1.2) contrast(1.1); /* Adds a subtle sepia tone to images */
+        }
+
+        /* Model Card Specific Styles */
+        .model-card {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px; /* Adjusted for column width */
+            overflow: hidden;
+            margin-bottom: 30px; /* Space below the card */
+            border: 1px solid #e0d8cc; /* Light border for vintage feel */
+        }
+
+        .model-images {
+            flex: 1;
+            min-width: 250px; /* Adjusted for column width */
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #f4f0e9; /* Lighter background for image section */
+        }
+
+        .model-images img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .model-images .headshot {
+            object-fit: cover;
+            height: 300px; /* Adjusted height */
+        }
+
+        .model-images .body-shots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .model-images .body-shots img {
+            flex: 1;
+            height: 150px; /* Adjusted height */
+            object-fit: cover;
+        }
+
+        .model-info {
+            flex: 1;
+            min-width: 250px; /* Adjusted for column width */
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .model-info h1 {
+            font-size: 2em; /* Adjusted font size */
+            margin-top: 0;
+            color: #a87b5a; /* Match vintage button color */
+            text-align: center;
+        }
+
+        .model-info .agency {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .model-info h2 {
+            font-size: 1.3em; /* Adjusted font size */
+            color: #a87b5a; /* Match vintage button color */
+            border-bottom: 1px solid #e0d8cc; /* Lighter border */
+            padding-bottom: 5px;
+            margin-bottom: 8px;
+        }
+
+        .measurements ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .measurements li {
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .contact-info a {
+            color: #6a9c78; /* A subtle green for links */
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .download-card {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .download-card a {
+            display: inline-block;
+            background-color: #6a9c78; /* Greenish button for download */
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .download-card a:hover {
+            background-color: #5a8b68;
+        }
+
+        /* Responsive adjustments for model card */
+        @media (max-width: 768px) {
+            .model-card {
+                flex-direction: column;
+                max-width: 100%;
+                margin: 10px auto 20px auto;
+            }
+
+            .model-images, .model-info {
+                min-width: unset;
+            }
+
+            .model-images .headshot {
+                height: 250px;
+            }
+
+            .model-images .body-shots {
+                flex-direction: row; /* Keep body shots side by side if space allows */
+                justify-content: center;
+            }
+            .model-images .body-shots img {
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .model-images .body-shots {
+                flex-direction: column; /* Stack body shots on very small screens */
+            }
+        }
+
+        /* Shopping Cart Modal Styles */
+        .cart-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s ease;
+        }
+        .cart-modal-overlay.visible {
+            visibility: visible;
+            opacity: 1;
+        }
+        .cart-modal {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        .cart-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8em;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.2s ease;
+        }
+        .cart-modal-close:hover {
+            color: #333;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 15px;
+            filter: sepia(0.3); /* Subtle sepia for cart items */
+        }
+        .cart-item-details {
+            flex-grow: 1;
+        }
+        .cart-item-details h4 {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #4a4a4a;
+            margin-bottom: 5px;
+        }
+        .cart-item-details p {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cart-item-actions button {
+            background-color: #dc3545; /* Red for remove */
+            color: #fff;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            transition: background-color 0.2s ease;
+        }
+        .cart-item-actions button:hover {
+            background-color: #c82333;
+        }
+        .cart-total {
+            text-align: right;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-top: 20px;
+            color: #a87b5a;
+        }
+        .checkout-button {
+            background-color: #28a745; /* Green for checkout */
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 20px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        .checkout-button:hover {
+            background-color: #218838;
+        }
+        .empty-cart-message {
+            text-align: center;
+            color: #888;
+            padding: 30px;
+        }
+         #mainNavigationLinks.mobile-open {
+            display: flex; /* Override hidden */
+            flex-direction: column;
+            position: absolute;
+            top: 100%; /* Position right below the header */
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 999; /* Ensure it's above other content but below modal */
+            padding: 1rem 0; /* Vertical padding */
+            border-top: 1px solid #eee;
+        }
+        #mainNavigationLinks.mobile-open li {
+            width: 100%;
+            text-align: center;
+            padding: 0.5rem 0;
+        }
+        #mainNavigationLinks.mobile-open a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #4a4a4a;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+        #mainNavigationLinks.mobile-open a:hover {
+            background-color: #f0f0f0;
+        }
+          .checkout-button {
+            background-color: #28a745; /* Green for checkout */
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 20px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        .checkout-button:hover {
+            background-color: #218838;
+        }
+        .empty-cart-message {
+            text-align: center;
+            color: #888;
+            padding: 30px;
+        }
+
+        /* Checkout Form Specific Styles */
+        .checkout-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        .checkout-form input[type="text"],
+        .checkout-form input[type="email"],
+        .checkout-form input[type="tel"],
+        .checkout-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box; /* Include padding in width */
+        }
+        .checkout-form .form-group {
+            margin-bottom: 15px;
+        }
+        .checkout-form .grid-cols-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .checkout-form .place-order-button {
+            background-color: #a87b5a;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 20px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        .checkout-form .place-order-button:hover {
+            background-color: #8c6347;
+        }
+        .checkout-form .payment-methods label {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 20px;
+            font-weight: normal;
+        }
+        .checkout-form .payment-methods input[type="radio"] {
+            width: auto;
+            margin-right: 8px;
+            margin-bottom: 0;
+        }
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #c3e6cb;
+        }
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #f5c6cb;
+    }
+    </style>
+</head>
+<body class="antialiased">
+     <header class="bg-stone-100 shadow-sm py-4 relative z-10">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <div class="text-3xl font-bold text-stone-800 vintage-font">VNTTANGE</div>
+            <nav class="flex items-center space-x-6">
+                <ul id="mainNavigationLinks" class="hidden lg:flex space-x-6 text-sm font-semibold text-stone-600">
+                    <li><a href="#" class="hover:text-stone-900 transition duration-200">ADULTS</a></li>
+                    <li><a href="#" class="hover:text-stone-900 transition duration-200">ΑΞΕΣΟΥΑΡ</a></li>
+                    <li><a href="#Bag" class="hover:text-stone-900 transition duration-200">ΤΣΑΝΤΕΣ</a></li>
+                    <li><a href="#Fashion" class="hover:text-stone-900 transition duration-200">ΡΟΥΧΑ</a></li>
+                    <li><a href="#" class="hover:text-stone-900 transition duration-200">ΝΕΕΣ ΑΦΙΞΕΙΣ</a></li>
+                    <li><a href="#" class="hover:text-stone-900 transition duration-200">ΕΚΠΤΩΣΕΙΣ</a></li>
+                </ul>
+                <!-- Shopping Cart Icon -->
+                <button id="cartButton" class="relative text-stone-600 hover:text-stone-900 transition duration-200">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span id="cartItemCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </button>
+                <!-- Hamburger Menu Icon (visible on small screens) -->
+                <button id="hamburgerButton" class="lg:hidden text-stone-600 hover:text-stone-900 transition duration-200 ml-4">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+    <!-- Main Content Area -->
+    <main class="container mx-auto my-8 px-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Left Column - Model Card & Product Showcase -->
+        <section class="lg:col-span-2 bg-white p-8 rounded-xl card-shadow">
+            <!-- Model Card Section -->
+            <div class="model-card mb-12">
+                <div class="model-images">
+                    <img src="img/sunglasses-1.jpg" alt="Επαγγελματική φωτογραφία πορτρέτου" class="headshot sepia-filter">
+                    <div class="body-shots">
+                        <img src="img/sunglasses-2.jpg" alt="Φωτογραφία ολόσωμη 1" class="sepia-filter">
+                        <img src="img/sunglasses-3.jpg" alt="Φωτογραφία ολόσωμη 2" class="sepia-filter">
+                    </div>
+                </div>
+
+                <div class="model-info">
+                    <h1> Retro Secret</h1>
+                    <p class="agency">Εκπροσωπείται από: Retro Secret</p>
+                    <div class="contact-info">
+                        <h2>Επικοινωνία</h2>
+                        <p>Email: <a href="mailto:RetroSecret@gmail.com">RetroSecret@gmail.com</a></p>
+                        <p>Instagram: <a href="https://www.instagram.com/retrossecret/" target="_blank">retrossecret</a></p>
+                        <!-- If you have an agent -->
+                        <p>Επικοινωνία Πρακτορείου: <a href="mailto:Service.Retro@Secret.com">Service.Retro@Secret.com</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-12">
+                <h3 class="text-2xl font-semibold mb-6 text-stone-700 vintage-font">ΕΠΙΛΟΓΕΣ ΠΑΝΤΕΛΟΝΙΩΝ</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg text-center">
+                        <img src="img/yellow pants.jpg" alt="Κλασική Δερμάτινη Τσάντα" class="w-full h-48 object-cover rounded-md mb-4 sepia-filter">
+                        <p class="font-semibold text-stone-800">Κλασικό Κιτρινο Πνατελονι</p>
+                        <p class="text-sm text-stone-600 mb-4">€12.00</p>
+                        <button class="vintage-button add-to-cart"
+                                data-id="bag1"
+                                data-name="Κλασικό Κιτρινο Πνατελονι"
+                                data-price="12.00"
+                                data-image="img/yellow pants.jpg">Προσθήκη στο Καλάθι</button>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg text-center">
+                        <img src="img/blue pants.jpg" alt="Ρετρό Τσάντα Χιαστί" class="w-full h-48 object-cover rounded-md mb-4 sepia-filter">
+                        <p class="font-semibold text-stone-800">Κλασικό μπλε Πνατελονι</p>
+                        <p class="text-sm text-stone-600 mb-4">€12.00</p>
+                        <button class="vintage-button add-to-cart"
+                                data-id="bag2"
+                                data-name="Κλασικό μπλε Πνατελονι"
+                                data-price="12.00"
+                                data-image="img/blue pants.jpg">Προσθήκη στο Καλάθι</button>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg text-center">
+                        <img src="img/Miss denim red.jpg" alt="Βραδινή Τσάντα Vintage" class="w-full h-48 object-cover rounded-md mb-4 sepia-filter">
+                        <p class="font-semibold text-stone-800">Κλασικό Κοκκινο Πνατελονι</p>
+                        <p class="text-sm text-stone-600 mb-4">€12.00</p>
+                        <button class="vintage-button add-to-cart"
+                                data-id="bag3"
+                                data-name="Κλασικό Κοκκινο Πνατελονι"
+                                data-price="12.00"
+                                data-image="img/Miss denim red.jpg">Προσθήκη στο Καλάθι</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Watches Section -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-semibold mb-6 text-stone-700 vintage-font">Vintage φούστες</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg flex items-center gap-4">
+                        <img src="img/Τζιν παντελονακι.jpg" alt="Τζιν παντελονακι" class="w-24 h-24 object-cover rounded-md sepia-filter">
+                        <div class="flex-grow">
+                            <p class="font-semibold text-stone-800">Τζιν παντελονακι</p>
+                            <p class="text-sm text-stone-600 mb-2">€10.00</p>
+                            <button class="vintage-button add-to-cart text-sm px-3 py-1"
+                                    data-id="Fashion"
+                                    data-name="Τζιν παντελονακι"
+                                    data-price="10.00"
+                                    data-image="img/Τζιν παντελονακι.jpg">Προσθήκη στο Καλάθι</button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg flex items-center gap-4">
+                        <img src="img/Τζιν-φουστα-μπροστα.jpg" alt="Τζιν φουστα" class="w-24 h-24 object-cover rounded-md sepia-filter">
+                        <div class="flex-grow">
+                            <p class="font-semibold text-stone-800"> Vintage Τζιν φουστα </p>
+                            <p class="text-sm text-stone-600 mb-2">€10.00</p>
+                            <button class="vintage-button add-to-cart text-sm px-3 py-1"
+                                    data-id="Fashion2"
+                                    data-name="Vintage Τζιν φουστα"
+                                    data-price="10.00"
+                            data-image="img/Τζιν-φουστα-μπροστα.jpg">Προσθήκη στο Καλάθι</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More Bags Section -->
+            <div>
+                <h3 class="text-2xl font-semibold mb-6 text-stone-700 vintage-font">ΠΕΡΙΣΣΟΤΕΡΕΣ ΦΟΥΣΤΕΣ</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg flex items-center gap-4">
+                        <img src="img/φουστα τζιν.jpg" alt="Μικρή Τσάντα Ώμου" class="w-24 h-24 object-cover rounded-md sepia-filter">
+                        <div class="flex-grow">
+                            <p class="font-semibold text-stone-800">Vintage φουστα με χρυσες λεπτομέριες </p>
+                            <p class="text-sm text-stone-600 mb-2">€10.00</p>
+                            <button class="vintage-button add-to-cart text-sm px-3 py-1"
+                                    data-id="bag4"
+                                    data-name="Vintage φουστα με χρυσες λεπτομέριες"
+                                    data-price="10.00"
+                                    data-image="img/φουστα τζιν.jpg">Προσθήκη στο Καλάθι</button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg flex items-center gap-4">
+                        <img src="img/φουστα.jpg" alt="Τσάντα Πουγκί" class="w-24 h-24 object-cover rounded-md sepia-filter">
+                        <div class="flex-grow">
+                            <p class="font-semibold text-stone-800">φουστα Τζιν</p>
+                            <p class="text-sm text-stone-600 mb-2">€5.00</p>
+                            <button class="vintage-button add-to-cart text-sm px-3 py-1"
+                                    data-id="bag5"
+                                    data-name="Φουστα Τζιν"
+                                    data-price="5.00"
+                                    data-image="img/φουστα.jpg">Προσθήκη στο Καλάθι</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Column - Featured Dress & Accessories -->
+        <section class="lg:col-span-1 bg-white p-8 rounded-xl card-shadow flex flex-col items-center">
+            <h3 class="text-2xl font-semibold mb-6 text-stone-700 vintage-font">ΚΥΡΙΩΣ ΕΝΔΥΜΑ</h3>
+            <img src="img/Σετ.jpg" alt="Vintage Dress" class="w-full h-auto object-cover rounded-lg mb-6 sepia-filter">
+            <p class="text-stone-600 text-center mb-4" id="Fashion">
+                Ένα κομψό vintage Σετ, ιδανικό για κάθε περίσταση.
+            </p>
+            <p class="text-xl font-bold text-stone-800 mb-4">€20.00</p>
+            <button class="vintage-button add-to-cart mb-8"
+                    data-id="dress1"
+                    data-name="Κομψό Vintage Φόρεμα"
+                    data-price="20.00"
+                    data-image="img/Σετ.jpg">Προσθήκη στο Καλάθι</button>
+
+            <!-- Accessories Section -->
+            <div class="w-full" id="Bag">
+                <h3 class="text-2xl font-semibold mb-6 text-stone-700 vintage-font">VINTAGE ΤΣΑΝΤΕΣ</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-50 p-3 rounded-lg text-center">
+                        <img src="img/Τσαντα_1.jpg" alt="Vintage Jewelry" class="w-full h-28 object-cover rounded-md mb-2 sepia-filter">
+                        <p class="text-sm font-semibold text-stone-800">Τσαντα Vintage</p>
+                        <p class="text-xs text-stone-600 mb-2">€15.00</p>
+                        <button class="vintage-button add-to-cart text-xs px-2 py-1"
+                                data-id="acc1"
+                                data-name="Τσαντα Vintage"
+                                data-price="15.00"
+                                data-image="img/Τσαντα_1.jpg">Προσθήκη</button>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg text-center">
+                        <img src="img/Τζαντα_2.jpg" alt="Vintage Belt" class="w-full h-28 object-cover rounded-md mb-2 sepia-filter">
+                        <p class="text-sm font-semibold text-stone-800"> Vintage Τσάντα  </p>
+                        <p class="text-xs text-stone-600 mb-2">€10.00</p>
+                        <button class="vintage-button add-to-cart text-xs px-2 py-1"
+                                data-id="acc2"
+                                data-name="Vintage Τσάντα"
+                                data-price="10.00"
+                                data-image="img/Τζαντα_2.jpg">Προσθήκη</button>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg text-center">
+                        <img src="img/Τζαντα_4.jpg" alt="Vintage Scarf" class="w-full h-28 object-cover rounded-md mb-2 sepia-filter">
+                        <p class="text-sm font-semibold text-stone-800">Vintage Τσάντα ώμου</p>
+                        <p class="text-xs text-stone-600 mb-2">€25.00</p>
+                        <button class="vintage-button add-to-cart text-xs px-2 py-1"
+                                data-id="acc3"
+                                data-name="Vintage Τσάντα ώμου"
+                                data-price="25.00"
+                                data-image="img/Τζαντα_4.jpg">Προσθήκη</button>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg text-center">
+                        <img src="img/Τσαντα_2.jpg" alt="Vintage Gloves" class="w-full h-28 object-cover rounded-md mb-2 sepia-filter">
+                        <p class="text-sm font-semibold text-stone-800">Vintage Τσαντα ώμου </p>
+                        <p class="text-xs text-stone-600 mb-2">€10.00</p>
+                        <button class="vintage-button add-to-cart text-xs px-2 py-1"
+                                data-id="acc4"
+                                data-name="Vintage Τσαντα ώμου"
+                                data-price="10.00"
+                                data-image="img/Τσαντα_2.jpg">Προσθήκη</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cartModalOverlay" class="cart-modal-overlay">
+        <div class="cart-modal">
+            <span id="closeCartModal" class="cart-modal-close">&times;</span>
+            <h2 class="text-3xl font-bold mb-6 text-stone-800 vintage-font text-center">Το Καλάθι σας</h2>
+            <div id="cartItemsContainer">
+                <!-- Cart items will be rendered here by JavaScript -->
+            </div>
+            <div id="emptyCartMessage" class="empty-cart-message hidden">Το καλάθι σας είναι άδειο.</div>
+            <div class="cart-total">
+                Σύνολο: <span id="cartTotal">€0.00</span>
+            </div>
+            <button id="checkoutButton" class="checkout-button vintage-button">Ολοκλήρωση Αγοράς</button>
+        </div>
+    </div>
+    <div id="checkoutModalOverlay" class="modal-overlay">
+        <div class="modal-content">
+            <span id="closeCheckoutModal" class="modal-close">&times;</span>
+            <h2 class="text-3xl font-bold mb-6 text-stone-800 vintage-font text-center">Στοιχεία Παραγγελίας</h2>
+            <form id="checkoutForm" class="checkout-form">
+                <div class="form-group">
+                    <label for="fullName">Ονοματεπώνυμο:</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Διεύθυνση:</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                <div class="grid-cols-2">
+                    <div class="form-group">
+                        <label for="city">Πόλη:</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="postalCode">Ταχυδρομικός Κώδικας:</label>
+                        <input type="text" id="postalCode" name="postalCode" required pattern="[0-9]{5}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Τηλέφωνο:</label>
+                    <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}">
+                </div>
+                <div class="form-group">
+                    <label>Μέθοδος Πληρωμής:</label>
+                    <div class="payment-methods">
+                        <label>
+                            <input type="radio" name="paymentMethod" value="creditCard" checked> Πιστωτική Κάρτα
+                        </label>
+                        <label>
+                            <input type="radio" name="paymentMethod" value="paypal"> PayPal
+                        </label>
+                        <label>
+                            <input type="radio" name="paymentMethod" value="bankTransfer"> Τραπεζική Μεταφορά
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="place-order-button vintage-button">Ολοκλήρωση Παραγγελίας</button>
+                <div id="checkoutMessage" class="mt-4 hidden"></div>
+            </form>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-stone-100 py-6 mt-12 text-center text-stone-600 text-sm">
+        <p>&copy; 2025 VNTTANGE. Όλα τα δικαιώματα κατοχυρωμένα.</p>
+        <p>Πολιτική Απορρήτου | Όροι Χρήσης</p>
+    </footer>
+
+    <script>
+        // Initialize cart from localStorage or as an empty array
+        let cart = JSON.parse(localStorage.getItem('vintageCart')) || [];
+
+        const cartButton = document.getElementById('cartButton');
+        const cartItemCount = document.getElementById('cartItemCount');
+        const cartModalOverlay = document.getElementById('cartModalOverlay');
+        const closeCartModal = document.getElementById('closeCartModal');
+        const cartItemsContainer = document.getElementById('cartItemsContainer');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutButton = document.getElementById('checkoutButton');
+        const emptyCartMessage = document.getElementById('emptyCartMessage');
+
+        // Function to update cart count in the header
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartItemCount.textContent = totalItems;
+        }
+
+        // Function to save cart to localStorage
+        function saveCart() {
+            localStorage.setItem('vintageCart', JSON.stringify(cart));
+        }
+
+        // Function to render cart items in the modal
+        function renderCart() {
+            cartItemsContainer.innerHTML = ''; // Clear existing items
+            let total = 0;
+
+            if (cart.length === 0) {
+                emptyCartMessage.classList.remove('hidden');
+                cartItemsContainer.classList.add('hidden');
+                checkoutButton.disabled = true;
+                checkoutButton.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                emptyCartMessage.classList.add('hidden');
+                cartItemsContainer.classList.remove('hidden');
+                checkoutButton.disabled = false;
+                checkoutButton.classList.remove('opacity-50', 'cursor-not-allowed');
+
+                cart.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.classList.add('cart-item');
+                    itemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <h4>${item.name}</h4>
+                            <p>${item.quantity} x €${item.price.toFixed(2)}</p>
+                        </div>
+                        <div class="cart-item-actions">
+                            <button data-id="${item.id}" class="remove-from-cart">Αφαίρεση</button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(itemElement);
+                    total += item.quantity * item.price;
+                });
+            }
+
+            cartTotal.textContent = `€${total.toFixed(2)}`;
+            updateCartCount();
+            saveCart();
+        }
+
+        // Add item to cart
+        function addToCart(id, name, price, image) {
+            const existingItem = cart.find(item => item.id === id);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ id, name, price: parseFloat(price), image, quantity: 1 });
+            }
+            renderCart();
+            showCartModal(); // Show cart after adding item
+        }
+
+        // Remove item from cart
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            renderCart();
+        }
+
+        // Event listeners for "Add to Cart" buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const id = event.target.dataset.id;
+                const name = event.target.dataset.name;
+                const price = event.target.dataset.price;
+                const image = event.target.dataset.image;
+                addToCart(id, name, price, image);
+            });
+        });
+
+        // Event listener for removing items from cart (delegation)
+        cartItemsContainer.addEventListener('click', (event) => {
+            if (event.target.classList.contains('remove-from-cart')) {
+                const id = event.target.dataset.id;
+                removeFromCart(id);
+            }
+        });
+
+        // Show/Hide Cart Modal
+        function showCartModal() {
+            cartModalOverlay.classList.add('visible');
+            renderCart(); // Re-render cart every time it's opened to ensure it's up-to-date
+        }
+
+        function hideCartModal() {
+            cartModalOverlay.classList.remove('visible');
+        }
+
+        cartButton.addEventListener('click', showCartModal);
+        closeCartModal.addEventListener('click', hideCartModal);
+        cartModalOverlay.addEventListener('click', (event) => {
+            if (event.target === cartModalOverlay) { // Close only if clicking on overlay, not modal content
+                hideCartModal();
+            }
+        });
+
+        // Checkout Button (simple alert for demo)
+        checkoutButton.addEventListener('click', () => {
+            if (cart.length > 0) {
+                const total = cart.reduce((sum, item) => sum + item.quantity * item.price, 0);
+                alert(`Ολοκλήρωση Αγοράς! Σύνολο: €${total.toFixed(2)}. Ευχαριστούμε για την αγορά σας!`);
+                cart = []; // Clear cart after checkout
+                renderCart();
+                hideCartModal();
+            } else {
+                alert('Το καλάθι σας είναι άδειο.');
+            }
+        });
+
+        // Handle Checkout Form Submission
+        checkoutForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const postalCode = document.getElementById('postalCode').value;
+            const phone = document.getElementById('phone').value;
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+            // Basic validation
+            if (!fullName || !email || !address || !city || !postalCode || !phone) {
+                checkoutMessage.textContent = 'Παρακαλώ συμπληρώστε όλα τα απαιτούμενα πεδία.';
+                checkoutMessage.classList.remove('hidden');
+                checkoutMessage.classList.add('error-message');
+                checkoutMessage.classList.remove('success-message');
+                return;
+            }
+
+            // Email validation (simple regex)
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                checkoutMessage.textContent = 'Παρακαλώ εισάγετε μια έγκυρη διεύθυνση email.';
+                checkoutMessage.classList.remove('hidden');
+                checkoutMessage.classList.add('error-message');
+                checkoutMessage.classList.remove('success-message');
+                return;
+            }
+
+            // Postal code validation (5 digits)
+            const postalCodeRegex = /^[0-9]{5}$/;
+            if (!postalCodeRegex.test(postalCode)) {
+                checkoutMessage.textContent = 'Ο Ταχυδρομικός Κώδικας πρέπει να είναι 5 ψηφία.';
+                checkoutMessage.classList.remove('hidden');
+                checkoutMessage.classList.add('error-message');
+                checkoutMessage.classList.remove('success-message');
+                return;
+            }
+
+            // Phone number validation (10 digits)
+            const phoneRegex = /^[0-9]{10}$/;
+            if (!phoneRegex.test(phone)) {
+                checkoutMessage.textContent = 'Το Τηλέφωνο πρέπει να είναι 10 ψηφία.';
+                checkoutMessage.classList.remove('hidden');
+                checkoutMessage.classList.add('error-message');
+                checkoutMessage.classList.remove('success-message');
+                return;
+            }
+
+
+            // Simulate order processing
+            const orderDetails = {
+                customer: { fullName, email, address, city, postalCode, phone },
+                items: cart,
+                total: cart.reduce((sum, item) => sum + item.quantity * item.price, 0).toFixed(2),
+                paymentMethod: paymentMethod,
+                orderDate: new Date().toLocaleString()
+            };
+
+            console.log('Order Details:', orderDetails);
+
+            // Simulate email sending
+            console.log(`Simulating email to ${email} with order confirmation.`);
+            // In a real application, you would send this data to a backend server
+            // which would then process the payment and send the actual email.
+            // Example: fetch('/api/process-order', { method: 'POST', body: JSON.stringify(orderDetails) });
+
+            checkoutMessage.textContent = 'Η παραγγελία σας ολοκληρώθηκε επιτυχώς! Ένα email επιβεβαίωσης έχει σταλεί στη διεύθυνσή σας.';
+            checkoutMessage.classList.remove('hidden');
+            checkoutMessage.classList.add('success-message');
+            checkoutMessage.classList.remove('error-message');
+
+            cart = []; // Clear cart after successful order
+            saveCart();
+            updateCartCount();
+
+            // Optionally, close the modal after a short delay
+            setTimeout(() => {
+                hideCheckoutModal();
+            }, 3000);
+        });
+
+          // Toggle Mobile Menu
+        hamburgerButton.addEventListener('click', () => {
+            mainNavigationLinks.classList.toggle('hidden');
+            mainNavigationLinks.classList.toggle('mobile-open');
+        });
+
+        // Close mobile menu if clicking outside of it (and it's open)
+        document.addEventListener('click', (event) => {
+            const isClickInsideNav = mainNavigationLinks.contains(event.target);
+            const isClickOnHamburger = hamburgerButton.contains(event.target);
+
+            if (mainNavigationLinks.classList.contains('mobile-open') && !isClickInsideNav && !isClickOnHamburger) {
+                mainNavigationLinks.classList.remove('mobile-open');
+                mainNavigationLinks.classList.add('hidden'); // Re-hide it
+            }
+        });
+
+        // Initial render of cart on page load
+        document.addEventListener('DOMContentLoaded', renderCart);
+    </script>
+
+</body>
+</html>
