@@ -1,0 +1,506 @@
+/* --- CSS Variables for easy theme changes --- */
+:root {
+    --primary-color: #8A2BE2; /* Blue Violet */
+    --secondary-color: #00CED1; /* Dark Turquoise */
+    --accent-color: #FF69B4; /* Hot Pink */
+    --dark-bg: #1A1A2E; /* Deep Purple-Blue */
+    --medium-bg: #2B2B45;
+    --light-text: #E0E0E0;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --gradient-start: #4b0082; /* Indigo */
+    --gradient-middle: #8a2be2; /* Blue Violet */
+    --gradient-end: #00ced1; /* Dark Turquoise */
+}
+
+/* --- General Settings & Background Gradient --- */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: var(--light-text);
+    background-color: var(--dark-bg); /* Fallback background */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* The gradient background layer */
+.background-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-middle) 50%, var(--gradient-end) 100%);
+    opacity: 0.8; /* Slightly transparent to not be too intense */
+    z-index: -1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Header --- */
+.main-header {
+    background-color: rgba(0, 0, 0, 0.6); /* Slightly transparent for gradient to show */
+    padding: 15px 0;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(5px); /* Blur effect */
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Removed flex-wrap here, will handle nav collapse with JS/media query */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    text-shadow: 1px 1px 3px var(--shadow-color);
+}
+
+.logo i {
+    margin-right: 10px;
+    font-size: 1.5em;
+    color: var(--secondary-color);
+}
+
+/* NEW: Menu Toggle Button */
+.menu-toggle {
+    display: none; /* Hidden by default on desktop */
+    font-size: 1.8rem;
+    color: var(--light-text);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    transition: color 0.3s ease;
+}
+
+.menu-toggle:hover {
+    color: var(--accent-color);
+}
+
+/* --- Main Navigation --- */
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Default to flex for desktop */
+    justify-content: center;
+}
+
+.main-nav li {
+    margin: 0 15px;
+}
+
+.main-nav a {
+    color: var(--light-text);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.main-nav a:hover::after,
+.main-nav a:focus::after {
+    width: 100%;
+}
+
+.main-nav a:hover,
+.main-nav a:focus {
+    color: var(--accent-color);
+}
+
+/* --- Main Content Layout --- */
+.main-content {
+    padding: 40px 0;
+    position: relative;
+    z-index: 1; /* Above the background gradient */
+}
+
+.stream-layout {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap; /* For small screens */
+    justify-content: center;
+}
+
+.video-player-section {
+    flex: 2; /* Takes more space */
+    min-width: 300px; /* Minimum width for player */
+    background-color: var(--medium-bg);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px var(--shadow-color);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-player-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    background-color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+.video-player-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.live-overlay {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 0.9em;
+    animation: pulse 1.5s infinite alternate; /* Pulse effect */
+}
+
+@keyframes pulse {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(1.05); opacity: 0.9; }
+}
+
+.stream-info {
+    text-align: center;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.stream-info .current-track {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--light-text);
+    margin-bottom: 20px;
+}
+
+.listen-button {
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px; /* More rounded button */
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.listen-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.listen-button i {
+    font-size: 1.2em;
+}
+
+.call-to-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.action-button {
+    background-color: var(--medium-bg);
+    color: var(--light-text);
+    border: 1px solid var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+
+/* --- Live Chat Section --- */
+.live-chat-section {
+    flex: 1; /* Takes remaining space */
+    min-width: 280px; /* Minimum width for chat */
+    background-color: var(--medium-bg);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px var(--shadow-color);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.live-chat-section h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--accent-color);
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    background-color: var(--dark-bg);
+    border-radius: 8px;
+    padding: 15px;
+    overflow-y: auto;
+    max-height: 400px; /* Limit chat height */
+    margin-bottom: 15px;
+    border: 1px solid var(--primary-color);
+    display: flex;
+    flex-direction: column-reverse; /* New messages at bottom */
+}
+
+.chat-message {
+    margin-bottom: 8px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    word-wrap: break-word; /* For long messages */
+}
+
+.chat-message strong {
+    color: var(--secondary-color);
+    margin-right: 5px;
+}
+
+.chat-form {
+    display: flex;
+    gap: 10px;
+}
+
+.chat-form input[type="text"] {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--primary-color);
+    border-radius: 25px;
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    font-size: 1em;
+}
+
+.chat-form input[type="text"]::placeholder {
+    color: rgba(224, 224, 224, 0.6);
+}
+
+.chat-form button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.chat-form button:hover {
+    background-color: var(--primary-color);
+}
+
+/* --- Floating Social Buttons (Sidebar) --- */
+.floating-social-buttons {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 999;
+}
+
+.floating-social-buttons a {
+    background-color: var(--medium-bg);
+    color: var(--light-text);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3em;
+    text-decoration: none;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.floating-social-buttons a:hover {
+    transform: scale(1.1);
+    background-color: var(--accent-color);
+    color: white;
+}
+
+/* --- Footer --- */
+.main-footer {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9em;
+    margin-top: 40px;
+    backdrop-filter: blur(5px);
+}
+
+.main-footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.main-footer p {
+    margin: 0;
+    color: rgba(224, 224, 224, 0.8);
+}
+
+.footer-social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social-links a {
+    color: rgba(224, 224, 224, 0.7);
+    font-size: 1.3em;
+    transition: color 0.3s ease;
+}
+
+.footer-social-links a:hover {
+    color: var(--accent-color);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .main-header .container {
+        flex-direction: row; /* Keep logo and toggle on same row */
+        justify-content: space-between; /* Space them out */
+        align-items: center;
+        gap: 0; /* Remove gap */
+    }
+
+    .menu-toggle {
+        display: block; /* Show hamburger icon on small screens */
+    }
+
+    .main-nav {
+        /* Hide nav by default on small screens */
+        display: none;
+        flex-direction: column;
+        width: 100%; /* Take full width */
+        background-color: rgba(0, 0, 0, 0.85); /* Darker background when open */
+        position: absolute; /* Position relative to header */
+        top: 100%; /* Below the header */
+        left: 0;
+        padding: 20px 0;
+        box-shadow: 0 8px 16px var(--shadow-color);
+        animation: slideDown 0.3s ease-out forwards; /* Animation for opening */
+    }
+
+    /* Class added by JS when menu is open */
+    .main-nav.active {
+        display: flex;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .main-nav li {
+        margin: 0; /* Remove horizontal margin */
+        width: 100%; /* Make list items take full width */
+        text-align: center;
+    }
+
+    .main-nav a {
+        padding: 10px 0; /* More padding for easier tapping */
+        display: block; /* Make link fill list item */
+    }
+
+    .main-nav a::after {
+        bottom: -2px; /* Adjust underline position for mobile */
+    }
+
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    body.menu-open {
+        /* Optional: disable scroll on body when menu is open */
+        /* overflow: hidden; */
+    }
+
+
+    .stream-layout {
+        flex-direction: column;
+    }
+
+    .video-player-section,
+    .live-chat-section {
+        width: 100%; /* Take full width on small screens */
+    }
+
+    .floating-social-buttons {
+        position: static; /* Place them in normal flow */
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 20px;
+        transform: none;
+    }
+
+    .main-footer .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
