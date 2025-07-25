@@ -31,14 +31,16 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-middle) 50%, var(--gradient-end) 100%);
-    opacity: 0.8; /* Slightly transparent to not be too intense */
+    opacity: 0.8;
     z-index: -1;
+pointer-events: none; 
+
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
 /* --- Header --- */
@@ -146,7 +148,7 @@ body {
     display: flex;
     gap: 30px;
     flex-wrap: wrap; /* For small screens */
-    justify-content: center;
+    justify-content: center; /* Ensures content is centered on larger screens when wrapped */
 }
 
 .video-player-section {
@@ -297,14 +299,14 @@ body {
     margin-bottom: 15px;
     border: 1px solid var(--primary-color);
     display: flex;
-    flex-direction: column-reverse; /* New messages at bottom */
+    flex-direction: column-reverse;
 }
 
 .chat-message {
     margin-bottom: 8px;
     padding: 6px 10px;
     border-radius: 5px;
-    word-wrap: break-word; /* For long messages */
+    word-wrap: break-word; 
 }
 
 .chat-message strong {
@@ -347,7 +349,6 @@ body {
     background-color: var(--primary-color);
 }
 
-/* --- Floating Social Buttons (Sidebar) --- */
 .floating-social-buttons {
     position: fixed;
     right: 20px;
@@ -417,13 +418,14 @@ body {
     color: var(--accent-color);
 }
 
-/* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
+    /* Επαναφορά των αρχικών ρυθμίσεων για Header/Navbar/Menu-Toggle */
     .main-header .container {
         flex-direction: row; /* Keep logo and toggle on same row */
         justify-content: space-between; /* Space them out */
         align-items: center;
         gap: 0; /* Remove gap */
+          padding: 0 20px;
     }
 
     .menu-toggle {
@@ -431,7 +433,6 @@ body {
     }
 
     .main-nav {
-        /* Hide nav by default on small screens */
         display: none;
         flex-direction: column;
         width: 100%; /* Take full width */
@@ -475,32 +476,61 @@ body {
         to { opacity: 1; transform: translateY(0); }
     }
 
-    body.menu-open {
-        /* Optional: disable scroll on body when menu is open */
-        /* overflow: hidden; */
-    }
-
+    /* --- Προσαρμογές για κεντράρισμα μόνο του περιεχομένου --- */
 
     .stream-layout {
-        flex-direction: column;
+        flex-direction: column; /* Stack sections vertically */
+        align-items: center; /* **Κεντράρει οριζόντια** το video player και το chat section */
     }
 
     .video-player-section,
     .live-chat-section {
-        width: 100%; /* Take full width on small screens */
+        width: 100%; /* Παίρνουν όλο το πλάτος */
+        max-width: 500px; /* Προσθήκη max-width για καλύτερη εμφάνιση σε μεγαλύτερα κινητά */
+        margin: 0 auto; /* **Κεντράρει** κάθε section ξεχωριστά */
     }
+
+    .live-overlay {
+        left: 50%; /* Μετακινεί το κέντρο του overlay στο 50% του γονέα */
+        transform: translateX(-50%); /* Μετακινεί το overlay πίσω κατά το μισό του πλάτους του για πλήρες κεντράρισμα */
+    }
+
+    .stream-info {
+        text-align: center; /* Εξασφαλίζει κεντράρισμα κειμένου μέσα στο stream-info */
+    }
+
+    .call-to-actions {
+        flex-direction: column; /* Στοίβαξη κουμπιών κάθετα */
+        align-items: center; /* **Κεντράρει** τα κουμπιά όταν στοιβάζονται */
+        gap: 15px; /* Διατηρεί το αρχικό gap ή προσαρμόζει αν χρειάζεται */
+    }
+    
 
     .floating-social-buttons {
-        position: static; /* Place them in normal flow */
-        flex-direction: row;
-        justify-content: center;
-        margin-top: 20px;
-        transform: none;
+        position: static; /* Το βγάζει από την fixed θέση */
+        flex-direction: row; /* Τα εμφανίζει στη σειρά */
+        justify-content: center; /* **Κεντράρει** τα social buttons οριζόντια */
+        margin-top: 30px; /* Προσθέτει χώρο από πάνω */
+        transform: none; /* Αφαιρεί τον προηγούμενο μετασχηματισμό */
+        width: 100%; /* Εξασφαλίζει ότι καταλαμβάνουν όλο το πλάτος για σωστό κεντράρισμα */
     }
-
+    .floating-social-buttons a {
+        margin: 0 10px; /* Προσθέτει οριζόντιο περιθώριο για απόσταση μεταξύ των κουμπιών */
+        width: 40px; /* Μειώνει το πλάτος για καλύτερη εμφάνιση σε κινητά */
+        height: 40px; /* Μειώνει το ύψος για καλύτερη εμφάνιση σε κινητά */
+    }
+    .live-chat-section {
+        width: 100%; /* Παίρνει όλο το πλάτος */
+        max-width: 500px; /* Προσθήκη max-width για καλύτερη εμφάνιση σε μεγαλύτερα κινητά */
+        margin: 0 auto; /* **Κεντράρει** το chat section */
+    }
+    .chat-messages {
+        max-height: 300px; /* Περιορισμός ύψους για καλύτερη εμφάνιση σε κινητά */
+    }
     .main-footer .container {
-        flex-direction: column;
-        gap: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
     }
 }
-
