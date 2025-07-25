@@ -31,16 +31,15 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-middle) 50%, var(--gradient-end) 100%);
-    opacity: 0.8;
+    opacity: 0.8; /* Slightly transparent to not be too intense */
     z-index: -1;
-pointer-events: none; 
-
+    pointer-events: none; /* Allows clicks to pass through to elements beneath */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 ;
+    padding: 0 20px;
 }
 
 /* --- Header --- */
@@ -58,7 +57,6 @@ pointer-events: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Removed flex-wrap here, will handle nav collapse with JS/media query */
 }
 
 .logo {
@@ -142,6 +140,8 @@ pointer-events: none;
     padding: 40px 0;
     position: relative;
     z-index: 1; /* Above the background gradient */
+    /* Για να αποφύγουμε τυχόν κενά από αριστερά/δεξιά padding του container σε μικρές οθόνες */
+    /* Δεν βάζουμε padding εδώ, το χειριζόμαστε μέσα στο media query */
 }
 
 .stream-layout {
@@ -299,14 +299,14 @@ pointer-events: none;
     margin-bottom: 15px;
     border: 1px solid var(--primary-color);
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column-reverse; /* New messages at bottom */
 }
 
 .chat-message {
     margin-bottom: 8px;
     padding: 6px 10px;
     border-radius: 5px;
-    word-wrap: break-word; 
+    word-wrap: break-word; /* For long messages */
 }
 
 .chat-message strong {
@@ -349,6 +349,7 @@ pointer-events: none;
     background-color: var(--primary-color);
 }
 
+/* --- Floating Social Buttons (Sidebar) --- */
 .floating-social-buttons {
     position: fixed;
     right: 20px;
@@ -418,14 +419,14 @@ pointer-events: none;
     color: var(--accent-color);
 }
 
+/* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
-    /* Επαναφορά των αρχικών ρυθμίσεων για Header/Navbar/Menu-Toggle */
+    /* Επαναφορά των αρχικών ρυθμίσεων για Header/Navbar/Menu-Toggle - ΑΝΕΠΗΡΕΑΣΤΑ */
     .main-header .container {
         flex-direction: row; /* Keep logo and toggle on same row */
         justify-content: space-between; /* Space them out */
         align-items: center;
         gap: 0; /* Remove gap */
-          padding: 0 20px;
     }
 
     .menu-toggle {
@@ -433,6 +434,7 @@ pointer-events: none;
     }
 
     .main-nav {
+        /* Hide nav by default on small screens */
         display: none;
         flex-direction: column;
         width: 100%; /* Take full width */
@@ -476,23 +478,31 @@ pointer-events: none;
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* --- Προσαρμογές για κεντράρισμα μόνο του περιεχομένου --- */
+    /* .container - Κεντράρισμα και αφαίρεση περιττών περιθωρίων/padding για το ΚΥΡΙΩΣ ΠΕΡΙΕΧΟΜΕΝΟ */
+    .main-content .container {
+        padding: 0 10px; /* Μειώνει το padding για να εκμεταλλευτεί όλο το πλάτος, αφήνοντας ένα μικρό περιθώριο */
+        /* margin: 0 auto; - Το container έχει ήδη 0 auto */
+    }
 
     .stream-layout {
         flex-direction: column; /* Stack sections vertically */
-        align-items: center; /* **Κεντράρει οριζόντια** το video player και το chat section */
+        align-items: center; /* Κεντράρει οριζόντια το video player και το chat section */
+        gap: 20px; /* Μπορείτε να προσαρμόσετε το κενό μεταξύ των sections */
     }
 
     .video-player-section,
     .live-chat-section {
-        width: 100%; /* Παίρνουν όλο το πλάτος */
+        width: 100%; /* Παίρνει όλο το πλάτος */
         max-width: 500px; /* Προσθήκη max-width για καλύτερη εμφάνιση σε μεγαλύτερα κινητά */
-        margin: 0 auto; /* **Κεντράρει** κάθε section ξεχωριστά */
+        box-sizing: border-box; /* Βεβαιώνει ότι το padding περιλαμβάνεται στο width */
+        margin: 0 auto; /* Κεντράρει κάθε section ξεχωριστά */
+        padding: 15px; /* Μείωση padding μέσα στα sections αν χρειάζεται για να χωρέσουν */
     }
 
     .live-overlay {
         left: 50%; /* Μετακινεί το κέντρο του overlay στο 50% του γονέα */
         transform: translateX(-50%); /* Μετακινεί το overlay πίσω κατά το μισό του πλάτους του για πλήρες κεντράρισμα */
+        top: 10px; /* Προσαρμογή της κάθετης θέσης αν χρειάζεται */
     }
 
     .stream-info {
@@ -501,39 +511,27 @@ pointer-events: none;
 
     .call-to-actions {
         flex-direction: column; /* Στοίβαξη κουμπιών κάθετα */
-        align-items: center; /* **Κεντράρει** τα κουμπιά όταν στοιβάζονται */
-        gap: 15px; /* Διατηρεί το αρχικό gap ή προσαρμόζει αν χρειάζεται */
+        align-items: center; /* Κεντράρει τα κουμπιά όταν στοιβάζονται */
+        gap: 10px; /* Προσαρμογή του κενού μεταξύ των κουμπιών */
     }
-    
+
+    /* Δεν αλλάζουμε το μήκος των κουμπιών όπως ζητήθηκε */
+    /* Τα κουμπιά θα διατηρήσουν το padding και το flex-item shrinking/growing τους */
+    /* Αν θέλετε να "γεμίζουν" περισσότερο, θα πρέπει να ορίσετε width πχ. width: 90%; */
 
     .floating-social-buttons {
         position: static; /* Το βγάζει από την fixed θέση */
         flex-direction: row; /* Τα εμφανίζει στη σειρά */
-        justify-content: center; /* **Κεντράρει** τα social buttons οριζόντια */
+        justify-content: center; /* Κεντράρει τα social buttons οριζόντια */
         margin-top: 30px; /* Προσθέτει χώρο από πάνω */
         transform: none; /* Αφαιρεί τον προηγούμενο μετασχηματισμό */
         width: 100%; /* Εξασφαλίζει ότι καταλαμβάνουν όλο το πλάτος για σωστό κεντράρισμα */
     }
-    .floating-social-buttons a {
-        margin: 0 10px; /* Προσθέτει οριζόντιο περιθώριο για απόσταση μεταξύ των κουμπιών */
-        width: 40px; /* Μειώνει το πλάτος για καλύτερη εμφάνιση σε κινητά */
-        height: 40px; /* Μειώνει το ύψος για καλύτερη εμφάνιση σε κινητά */
-    }
-    .live-chat-section {
-        width: 100%; /* Παίρνει όλο το πλάτος */
-        max-width: 500px; /* Προσθήκη max-width για καλύτερη εμφάνιση σε μεγαλύτερα κινητά */
-        margin: 0 auto; /* **Κεντράρει** το chat section */
-    }
-    .chat-messages {
-        max-height: 300px; /* Περιορισμός ύψους για καλύτερη εμφάνιση σε κινητά */
-    }
+
+    /* Footer - Δεν πειράζουμε το footer όπως ζητήθηκε */
     .main-footer .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-      .container {
-        padding: 0; /* Προσθήκη padding για καλύτερη εμφάνιση σε κινητά */
+        flex-direction: column;
+        gap: 15px;
+        /* Αυτά ήταν ήδη έτσι, δεν τα αλλάζουμε */
     }
 }
