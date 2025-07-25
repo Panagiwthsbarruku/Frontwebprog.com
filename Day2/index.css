@@ -533,4 +533,7 @@ pointer-events: none;
         align-items: center;
         flex-wrap: wrap;
     }
+      .container {
+        padding: 0; /* Προσθήκη padding για καλύτερη εμφάνιση σε κινητά */
+    }
 }
