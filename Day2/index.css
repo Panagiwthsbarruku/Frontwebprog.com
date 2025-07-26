@@ -26,6 +26,8 @@ body {
     color: var(--light-text);
     background-color: var(--dark-bg); /* Fallback background */
     overflow-x: hidden; /* Prevent horizontal scroll */
+    /* ΝΕΟ: Προσθήκη max-width: 100% στο body για να βεβαιωθούμε ότι δεν ξεφεύγει */
+    max-width: 100vw; /* 100% του viewport width */
 }
 
 /* The gradient background layer */
@@ -145,6 +147,10 @@ body {
     padding: 40px 0;
     position: relative;
     z-index: 1; /* Above the background gradient */
+    /* ΝΕΟ: Εξασφάλιση ότι το main-content δεν ξεπερνά το viewport */
+    width: 100%;
+    max-width: 100vw; /* 100% του viewport width */
+    overflow: hidden; /* Κόβει οτιδήποτε ξεφεύγει */
 }
 
 .stream-layout {
@@ -164,6 +170,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
+    max-width: 100%;
+    /* overflow: hidden; */ /* Κόψιμο εσωτερικού overflow αν υπάρχει */
 }
 
 .video-player-container {
@@ -172,7 +181,7 @@ body {
     padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
     background-color: #000;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: hidden; /* Κρατάει το βίντεο μέσα στα όρια */
     box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
 }
 
@@ -207,6 +216,9 @@ body {
     text-align: center;
     margin-top: 25px;
     width: 100%;
+    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .stream-info .current-track {
@@ -232,6 +244,8 @@ body {
     gap: 10px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
+    max-width: 100%; /* Για να μην ξεπερνά το πλάτος του γονέα του αν μεγαλώσει πολύ το κείμενο */
 }
 
 .listen-button:hover {
@@ -249,6 +263,9 @@ body {
     gap: 15px;
     justify-content: center;
     flex-wrap: wrap;
+    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .action-button {
@@ -263,6 +280,8 @@ body {
     gap: 8px;
     font-size: 0.9em;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
+    max-width: 100%; /* Για να μην ξεπερνά το πλάτος του γονέα του αν μεγαλώσει πολύ το κείμενο */
 }
 
 .action-button:hover {
@@ -282,6 +301,9 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
+    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
+    max-width: 100%;
+    /* overflow: hidden; */ /* Κόψιμο εσωτερικού overflow αν υπάρχει */
 }
 
 .live-chat-section h3 {
@@ -303,6 +325,8 @@ body {
     border: 1px solid var(--primary-color);
     display: flex;
     flex-direction: column-reverse; /* New messages at bottom */
+    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
+    max-width: 100%;
 }
 
 .chat-message {
@@ -310,6 +334,9 @@ body {
     padding: 6px 10px;
     border-radius: 5px;
     word-wrap: break-word; /* For long messages */
+    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
+    max-width: 100%;
+    overflow-wrap: break-word; /* Πιο σύγχρονο */
 }
 
 .chat-message strong {
@@ -320,6 +347,8 @@ body {
 .chat-form {
     display: flex;
     gap: 10px;
+    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
+    max-width: 100%;
 }
 
 .chat-form input[type="text"] {
@@ -330,6 +359,9 @@ body {
     background-color: var(--dark-bg);
     color: var(--light-text);
     font-size: 1em;
+    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
+    min-width: 0; /* Σημαντικό σε flexbox για να επιτρέψει στο input να συρρικνωθεί σωστά */
+    width: 100%; /* Βεβαιώνει ότι προσπαθεί να πάρει όλο το διαθέσιμο πλάτος */
 }
 
 .chat-form input[type="text"]::placeholder {
@@ -346,6 +378,8 @@ body {
     font-size: 1em;
     font-weight: 600;
     transition: background-color 0.3s ease;
+    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
+    flex-shrink: 0; /* Αποτρέπει το κουμπί από το να συρρικνωθεί υπερβολικά */
 }
 
 .chat-form button:hover {
@@ -481,8 +515,8 @@ body {
 
     /* .container - Κεντράρισμα και αφαίρεση περιττών περιθωρίων/padding για το ΚΥΡΙΩΣ ΠΕΡΙΕΧΟΜΕΝΟ */
     .main-content .container {
-        /* Μειώνουμε το padding στο ελάχιστο για να εκμεταλλευτούμε όλο το πλάτος */
-        padding: 0 5px; /* Μείωση σε 5px για να είναι σχεδόν άκρη με άκρη */
+        /* Μηδενίζουμε το padding για να εκμεταλλευτούμε όλο το πλάτος */
+        padding: 0; /* ΝΕΟ: Μηδενικό padding για να εξαλείψουμε κάθε πιθανότητα κενού από εδώ */
     }
 
     .stream-layout {
@@ -494,10 +528,11 @@ body {
     .video-player-section,
     .live-chat-section {
         width: 100%; /* Παίρνει όλο το πλάτος */
-        max-width: 500px; /* Προσθήκη max-width για καλύτερη εμφάνιση σε μεγαλύτερα κινητά */
-        /* box-sizing: border-box; - Αυτό είναι πλέον καθολικό, δεν χρειάζεται εδώ */
+        max-width: 500px;
         margin: 0 auto;
-        padding: 15px; /* Μείωση padding μέσα στα sections αν χρειάζεται για να χωρέσουν */
+        padding: 15px;
+        /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
+        overflow: hidden; /* Κόβει τυχόν εσωτερικό περιεχόμενο που ξεφεύγει */
     }
 
     .live-overlay {
