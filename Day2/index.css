@@ -12,6 +12,11 @@
     --gradient-end: #00ced1; /* Dark Turquoise */
 }
 
+/* --- Global Box Sizing for consistency --- */
+*, *::before, *::after {
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width/height */
+}
+
 /* --- General Settings & Background Gradient --- */
 body {
     font-family: 'Open Sans', sans-serif;
@@ -140,8 +145,6 @@ body {
     padding: 40px 0;
     position: relative;
     z-index: 1; /* Above the background gradient */
-    /* Για να αποφύγουμε τυχόν κενά από αριστερά/δεξιά padding του container σε μικρές οθόνες */
-    /* Δεν βάζουμε padding εδώ, το χειριζόμαστε μέσα στο media query */
 }
 
 .stream-layout {
@@ -423,31 +426,29 @@ body {
 @media (max-width: 768px) {
     /* Επαναφορά των αρχικών ρυθμίσεων για Header/Navbar/Menu-Toggle - ΑΝΕΠΗΡΕΑΣΤΑ */
     .main-header .container {
-        flex-direction: row; /* Keep logo and toggle on same row */
-        justify-content: space-between; /* Space them out */
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
-        gap: 0; /* Remove gap */
+        gap: 0;
     }
 
     .menu-toggle {
-        display: block; /* Show hamburger icon on small screens */
+        display: block;
     }
 
     .main-nav {
-        /* Hide nav by default on small screens */
         display: none;
         flex-direction: column;
-        width: 100%; /* Take full width */
-        background-color: rgba(0, 0, 0, 0.85); /* Darker background when open */
-        position: absolute; /* Position relative to header */
-        top: 100%; /* Below the header */
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.85);
+        position: absolute;
+        top: 100%;
         left: 0;
         padding: 20px 0;
         box-shadow: 0 8px 16px var(--shadow-color);
-        animation: slideDown 0.3s ease-out forwards; /* Animation for opening */
+        animation: slideDown 0.3s ease-out forwards;
     }
 
-    /* Class added by JS when menu is open */
     .main-nav.active {
         display: flex;
     }
@@ -459,18 +460,18 @@ body {
     }
 
     .main-nav li {
-        margin: 0; /* Remove horizontal margin */
-        width: 100%; /* Make list items take full width */
+        margin: 0;
+        width: 100%;
         text-align: center;
     }
 
     .main-nav a {
-        padding: 10px 0; /* More padding for easier tapping */
-        display: block; /* Make link fill list item */
+        padding: 10px 0;
+        display: block;
     }
 
     .main-nav a::after {
-        bottom: -2px; /* Adjust underline position for mobile */
+        bottom: -2px;
     }
 
     @keyframes slideDown {
@@ -480,58 +481,53 @@ body {
 
     /* .container - Κεντράρισμα και αφαίρεση περιττών περιθωρίων/padding για το ΚΥΡΙΩΣ ΠΕΡΙΕΧΟΜΕΝΟ */
     .main-content .container {
-        padding: 0 10px; /* Μειώνει το padding για να εκμεταλλευτεί όλο το πλάτος, αφήνοντας ένα μικρό περιθώριο */
-        /* margin: 0 auto; - Το container έχει ήδη 0 auto */
+        /* Μειώνουμε το padding στο ελάχιστο για να εκμεταλλευτούμε όλο το πλάτος */
+        padding: 0 5px; /* Μείωση σε 5px για να είναι σχεδόν άκρη με άκρη */
     }
 
     .stream-layout {
-        flex-direction: column; /* Stack sections vertically */
-        align-items: center; /* Κεντράρει οριζόντια το video player και το chat section */
-        gap: 20px; /* Μπορείτε να προσαρμόσετε το κενό μεταξύ των sections */
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
     }
 
     .video-player-section,
     .live-chat-section {
         width: 100%; /* Παίρνει όλο το πλάτος */
         max-width: 500px; /* Προσθήκη max-width για καλύτερη εμφάνιση σε μεγαλύτερα κινητά */
-        box-sizing: border-box; /* Βεβαιώνει ότι το padding περιλαμβάνεται στο width */
-        margin: 0 auto; /* Κεντράρει κάθε section ξεχωριστά */
+        /* box-sizing: border-box; - Αυτό είναι πλέον καθολικό, δεν χρειάζεται εδώ */
+        margin: 0 auto;
         padding: 15px; /* Μείωση padding μέσα στα sections αν χρειάζεται για να χωρέσουν */
     }
 
     .live-overlay {
-        left: 50%; /* Μετακινεί το κέντρο του overlay στο 50% του γονέα */
-        transform: translateX(-50%); /* Μετακινεί το overlay πίσω κατά το μισό του πλάτους του για πλήρες κεντράρισμα */
-        top: 10px; /* Προσαρμογή της κάθετης θέσης αν χρειάζεται */
+        left: 50%;
+        transform: translateX(-50%);
+        top: 10px;
     }
 
     .stream-info {
-        text-align: center; /* Εξασφαλίζει κεντράρισμα κειμένου μέσα στο stream-info */
+        text-align: center;
     }
 
     .call-to-actions {
-        flex-direction: column; /* Στοίβαξη κουμπιών κάθετα */
-        align-items: center; /* Κεντράρει τα κουμπιά όταν στοιβάζονται */
-        gap: 10px; /* Προσαρμογή του κενού μεταξύ των κουμπιών */
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
     }
 
-    /* Δεν αλλάζουμε το μήκος των κουμπιών όπως ζητήθηκε */
-    /* Τα κουμπιά θα διατηρήσουν το padding και το flex-item shrinking/growing τους */
-    /* Αν θέλετε να "γεμίζουν" περισσότερο, θα πρέπει να ορίσετε width πχ. width: 90%; */
-
     .floating-social-buttons {
-        position: static; /* Το βγάζει από την fixed θέση */
-        flex-direction: row; /* Τα εμφανίζει στη σειρά */
-        justify-content: center; /* Κεντράρει τα social buttons οριζόντια */
-        margin-top: 30px; /* Προσθέτει χώρο από πάνω */
-        transform: none; /* Αφαιρεί τον προηγούμενο μετασχηματισμό */
-        width: 100%; /* Εξασφαλίζει ότι καταλαμβάνουν όλο το πλάτος για σωστό κεντράρισμα */
+        position: static;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 30px;
+        transform: none;
+        width: 100%;
     }
 
     /* Footer - Δεν πειράζουμε το footer όπως ζητήθηκε */
     .main-footer .container {
         flex-direction: column;
         gap: 15px;
-        /* Αυτά ήταν ήδη έτσι, δεν τα αλλάζουμε */
     }
 }
