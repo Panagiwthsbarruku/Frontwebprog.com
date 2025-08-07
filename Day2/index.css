@@ -1,33 +1,23 @@
-/* --- CSS Variables for easy theme changes --- */
-:root {
-    --primary-color: #8A2BE2; /* Blue Violet */
-    --secondary-color: #00CED1; /* Dark Turquoise */
-    --accent-color: #FF69B4; /* Hot Pink */
-    --dark-bg: #1A1A2E; /* Deep Purple-Blue */
-    --medium-bg: #2B2B45;
-    --light-text: #E0E0E0;
-    --shadow-color: rgba(0, 0, 0, 0.4);
-    --gradient-start: #4b0082; /* Indigo */
-    --gradient-middle: #8a2be2; /* Blue Violet */
-    --gradient-end: #00ced1; /* Dark Turquoise */
-}
 
-/* --- Global Box Sizing for consistency --- */
 *, *::before, *::after {
     box-sizing: border-box; /* Ensures padding and border are included in the element's total width/height */
 }
 
-/* --- General Settings & Background Gradient --- */
 body {
     font-family: 'Open Sans', sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
     color: var(--light-text);
-    background-color: var(--dark-bg); /* Fallback background */
-    overflow-x: hidden; /* Prevent horizontal scroll */
-    /* ΝΕΟ: Προσθήκη max-width: 100% στο body για να βεβαιωθούμε ότι δεν ξεφεύγει */
-    max-width: 100vw; /* 100% του viewport width */
+    overflow-x: hidden; 
+    --primary-color: #1a1a1a; 
+    --secondary-color: #2c2c2c; 
+    --accent-color: #01aaf2; /* Bright accent color */
+    --light-text: #e0e0e0; /* Light text color */
+    --medium-bg: rgba(44, 44, 44, 0.8); /* Semi-transparent medium background */
+    --dark-bg: rgba(26, 26, 26, 0.9); /* Semi-transparent dark background */
+    --shadow-color: rgba(0, 0, 0, 0.5); /* Shadow color */
+    --gradient-start: rgba(1, 170, 242, 0.8); /* Start color for gradient */
 }
 
 /* The gradient background layer */
@@ -51,7 +41,7 @@ body {
 
 /* --- Header --- */
 .main-header {
-    background-color: rgba(0, 0, 0, 0.6); /* Slightly transparent for gradient to show */
+    background-color: rgba(0, 0, 0, 0); /* Slightly transparent for gradient to show */
     padding: 15px 0;
     box-shadow: 0 4px 8px var(--shadow-color);
     position: sticky;
@@ -76,13 +66,13 @@ body {
     text-shadow: 1px 1px 3px var(--shadow-color);
 }
 
-.logo i {
+.logo img {
     margin-right: 10px;
     font-size: 1.5em;
     color: var(--secondary-color);
+    border-radius: 10pc;
+    transition: transform 0.3s ease;
 }
-
-/* NEW: Menu Toggle Button */
 .menu-toggle {
     display: none; /* Hidden by default on desktop */
     font-size: 1.8rem;
@@ -98,28 +88,56 @@ body {
     color: var(--accent-color);
 }
 
-/* --- Main Navigation --- */
-.main-nav ul {
+.menu-toggle.active i.fa-bars {
+    display: none; 
+}
+.main-nav{
+    display: flex;
+    gap: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--light-text);
     list-style: none;
-    padding: 0;
     margin: 0;
-    display: flex; /* Default to flex for desktop */
-    justify-content: center;
+    padding: 0;
+    transition: all 0.3s ease;
+    position: relative;
 }
-
+.main-nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
 .main-nav li {
-    margin: 0 15px;
+    position: relative;
+    transition: color 0.3s ease;
+    padding: 10px 0;
+    border-bottom: 2px solid transparent; /* For underline effect */
+    margin: 0;
+    width: fit-content; /* Ensures the underline is only as wide as the text */
+    text-align: center; /* Centers the text within the li */
+    flex-shrink: 0; /* Prevents shrinking on smaller screens */
+    text-decoration: none;
 }
-
 .main-nav a {
     color: var(--light-text);
     text-decoration: none;
-    font-weight: 600;
-    padding: 5px 0;
-    position: relative;
-    transition: color 0.3s ease;
+    padding: 10px 0;
+    display: block; 
+    transition: color 0.3s ease, border-color 0.3s ease;
+    position: relative; /* For pseudo-element positioning */
+    font-weight: 600; /* Slightly bolder for better visibility */
+    font-size: 1.1rem; /* Consistent font size */
+    font-family: 'Open Sans', sans-serif; /* Consistent font family */
+    text-transform: uppercase; /* Uppercase for a more modern look */
+    letter-spacing: 0.5px; /* Slightly increased letter spacing for readability */
+    padding: 10px 15px; /* Added horizontal padding for better click area */
+    border-radius: 5px; /* Rounded corners for a modern look */
+ transition: color 0.3s ease;
 }
-
 .main-nav a::after {
     content: '';
     position: absolute;
@@ -141,320 +159,286 @@ body {
 .main-nav a:focus {
     color: var(--accent-color);
 }
-
-/* --- Main Content Layout --- */
-.main-content {
-    padding: 40px 0;
-    position: relative;
-    z-index: 1; /* Above the background gradient */
-    /* ΝΕΟ: Εξασφάλιση ότι το main-content δεν ξεπερνά το viewport */
-    width: 100%;
-    max-width: 100vw; /* 100% του viewport width */
-    overflow: hidden; /* Κόβει οτιδήποτε ξεφεύγει */
-}
-
-.stream-layout {
+/* --- buttons-socials --- */
+.main-nav .bottons-socials {
     display: flex;
-    gap: 30px;
-    flex-wrap: wrap; /* For small screens */
-    justify-content: center; /* Ensures content is centered on larger screens when wrapped */
-}
-
-.video-player-section {
-    flex: 2; /* Takes more space */
-    min-width: 300px; /* Minimum width for player */
-    background-color: var(--medium-bg);
-    border-radius: 12px;
-    box-shadow: 0 8px 20px var(--shadow-color);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
+    gap: 15px;
     align-items: center;
-    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
-    max-width: 100%;
-    /* overflow: hidden; */ /* Κόψιμο εσωτερικού overflow αν υπάρχει */
+    justify-content: center;
+    margin-left: auto;
+    margin-right: 20px; /* Adds some space from the right edge */
+    flex-shrink: 0; /* Prevents shrinking on smaller screens */
+}
+/* --- main-nav strem info --- */
+.main-nav .stream-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto; /* Pushes it to the right */
+    margin-right: 20px; /* Adds some space from the right edge */
+}
+.main-nav .stream-info button {
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.main-nav .stream-info button i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+.main-nav .stream-info button:hover i {
+    transform: translateX(5px);
 }
 
-.video-player-container {
+/* --- Hero Section Styles --- */
+.hero-section {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    background-color: #000;
-    border-radius: 8px;
-    overflow: hidden; /* Κρατάει το βίντεο μέσα στα όρια */
-    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  background-image: url(img/one_photo.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Parallax effect */
+    color: var(--light-text);
+    overflow: hidden;
+    z-index: 1;
+    padding: 60px 0 40px 0;
 }
-
-.video-player-container iframe {
+.hero-section::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    border: none;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: -1; /* Behind the content */
+    transition: background 0.3s ease;
+}
+.center-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
 }
 
-.live-overlay {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background-color: var(--accent-color);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: 700;
-    font-size: 0.9em;
-    animation: pulse 1.5s infinite alternate; /* Pulse effect */
+.logo-box {
+  color: white;
+  padding: 40px 60px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.center-logo img {
+    width: 200px; /* Adjust as needed */
+    height: auto;
+    transition: transform 0.3s ease;
+}
+.center-logo img:hover {
+    transform: scale(1.05);
 }
 
-@keyframes pulse {
-    from { transform: scale(1); opacity: 1; }
-    to { transform: scale(1.05); opacity: 0.9; }
+
+.center-logo .listen-button {
+  margin-top: 20px;
+background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
 }
 
-.stream-info {
-    text-align: center;
-    margin-top: 25px;
-    width: 100%;
-    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
-    max-width: 100%;
-    overflow: hidden;
+.center-logo .listen-button i {
+  font-size: 1.1rem;
+    transition: transform 0.3s ease;
 }
-
-.stream-info .current-track {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--light-text);
-    margin-bottom: 20px;
+.center-logo .listen-button:hover i{
+    transform: translateX(5px);
 }
-
-.listen-button {
-    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-    color: white;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 50px; /* More rounded button */
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
+.logo-streams {
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 10px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
-    max-width: 100%; /* Για να μην ξεπερνά το πλάτος του γονέα του αν μεγαλώσει πολύ το κείμενο */
-}
-
-.listen-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-}
-
-.listen-button i {
-    font-size: 1.2em;
-}
-
-.call-to-actions {
-    margin-top: 20px;
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
-    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
-    max-width: 100%;
-    overflow: hidden;
-}
-
-.action-button {
-    background-color: var(--medium-bg);
-    color: var(--light-text);
-    border: 1px solid var(--primary-color);
-    padding: 10px 20px;
-    border-radius: 25px;
-    text-decoration: none;
-    display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
-    max-width: 100%; /* Για να μην ξεπερνά το πλάτος του γονέα του αν μεγαλώσει πολύ το κείμενο */
+    margin-top: 30px;
 }
-
-.action-button:hover {
-    background-color: var(--primary-color);
-    color: white;
-    border-color: var(--accent-color);
+.logo-streams img{
+   box-shadow: 1px 3px 20px rgb(7, 12, 2);
+    width: 350px; /* Adjust as needed */
+    height: 350px; /* Adjust as needed */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    transition: transform 0.3s ease;
 }
-
-
-/* --- Live Chat Section --- */
-.live-chat-section {
-    flex: 1; /* Takes remaining space */
-    min-width: 280px; /* Minimum width for chat */
-    background-color: var(--medium-bg);
-    border-radius: 12px;
-    box-shadow: 0 8px 20px var(--shadow-color);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
-    max-width: 100%;
-    /* overflow: hidden; */ /* Κόψιμο εσωτερικού overflow αν υπάρχει */
-}
-
-.live-chat-section h3 {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--accent-color);
-    margin-top: 0;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.chat-messages {
-    flex-grow: 1;
-    background-color: var(--dark-bg);
-    border-radius: 8px;
-    padding: 15px;
-    overflow-y: auto;
-    max-height: 400px; /* Limit chat height */
-    margin-bottom: 15px;
-    border: 1px solid var(--primary-color);
-    display: flex;
-    flex-direction: column-reverse; /* New messages at bottom */
-    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
-    max-width: 100%;
-}
-
-.chat-message {
-    margin-bottom: 8px;
-    padding: 6px 10px;
-    border-radius: 5px;
-    word-wrap: break-word; /* For long messages */
-    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
-    max-width: 100%;
-    overflow-wrap: break-word; /* Πιο σύγχρονο */
-}
-
-.chat-message strong {
-    color: var(--secondary-color);
-    margin-right: 5px;
-}
-
-.chat-form {
-    display: flex;
+/*Social-buttons---*/
+.social-buttons{
+    justify-content: center;
+  text-align: center;
+    align-items: center;
     gap: 10px;
-    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
-    max-width: 100%;
+    margin-top: 30px;
 }
-
-.chat-form input[type="text"] {
-    flex-grow: 1;
-    padding: 10px 15px;
-    border: 1px solid var(--primary-color);
-    border-radius: 25px;
-    background-color: var(--dark-bg);
+.social-buttons i {
+    font-size: 1.1em;
     color: var(--light-text);
-    font-size: 1em;
-    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
-    min-width: 0; /* Σημαντικό σε flexbox για να επιτρέψει στο input να συρρικνωθεί σωστά */
-    width: 100%; /* Βεβαιώνει ότι προσπαθεί να πάρει όλο το διαθέσιμο πλάτος */
-}
-
-.chat-form input[type="text"]::placeholder {
-    color: rgba(224, 224, 224, 0.6);
-}
-
-.chat-form button {
-    background-color: var(--secondary-color);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 1em;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-    /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
-    flex-shrink: 0; /* Αποτρέπει το κουμπί από το να συρρικνωθεί υπερβολικά */
-}
-
-.chat-form button:hover {
-    background-color: var(--primary-color);
-}
-
-/* --- Floating Social Buttons (Sidebar) --- */
-.floating-social-buttons {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 999;
-}
-
-.floating-social-buttons a {
-    background-color: var(--medium-bg);
-    color: var(--light-text);
-    width: 45px;
-    height: 45px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    padding: 10px;
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.3em;
-    text-decoration: none;
+    background-color: var(--medium-bg);
     box-shadow: 0 4px 10px var(--shadow-color);
-    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px; 
+    flex-shrink: 0; 
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin: 0 5px; 
 }
-
-.floating-social-buttons a:hover {
+.social-buttons p{
+   color: #1a1a1a;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: 900;
+  border: 4px solid black;
+    transition: color 0.3s ease;
+    padding: 5px 10px;
+    max-width: 300px; /* Ensures the text doesn't stretch too wide */
+    margin: 10% auto;
+}
+.social-buttons a {
+    color: var(--light-text);
+    font-size: 1.5em;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 50%;
+   gap: 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.social-buttons a:hover {
+    color: var(--accent-color);
     transform: scale(1.1);
-    background-color: var(--accent-color);
-    color: white;
 }
+/* ---  --- */
 
 /* --- Footer --- */
 .main-footer {
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 20px 0;
-    text-align: center;
-    font-size: 0.9em;
-    margin-top: 40px;
-    backdrop-filter: blur(5px);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--light-text);
+    padding: 30px 0 15px 0;
+    box-shadow: 0 -4px 16px var(--shadow-color);
+    position: relative;
+    z-index: 10;
+    font-family: 'Open Sans', sans-serif;
 }
 
-.main-footer .container {
+.main-footer .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-.main-footer p {
-    margin: 0;
-    color: rgba(224, 224, 224, 0.8);
-}
-
-.footer-social-links {
+.main-footer .footer-logo {
     display: flex;
-    gap: 15px;
-}
-
-.footer-social-links a {
-    color: rgba(224, 224, 224, 0.7);
-    font-size: 1.3em;
-    transition: color 0.3s ease;
-}
-
-.footer-social-links a:hover {
+    align-items: center;
+    gap: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
     color: var(--accent-color);
 }
+
+.main-footer .footer-logo img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    margin-right: 8px;
+}
+
+.main-footer .footer-socials {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.main-footer .footer-socials a {
+    color: var(--light-text);
+    font-size: 1.3rem;
+    background: var(--medium-bg);
+    border-radius: 50%;
+    padding: 8px;
+    transition: color 0.3s, background 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.main-footer .footer-socials a:hover {
+    color: var(--accent-color);
+    background: rgba(1, 170, 242, 0.15);
+    transform: scale(1.12);
+}
+
+.main-footer .footer-text {
+    flex: 1 1 100%;
+    text-align: center;
+    margin-top: 12px;
+}
+
+.main-footer .footer-text p {
+    color: var(--light-text);
+    font-size: 1rem;
+    margin: 0;
+    opacity: 0.8;
+    letter-spacing: 0.2px;
+}
+
+@media (max-width: 700px) {
+    .main-footer .footer-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 0 8px;
+    }
+    .main-footer .footer-logo {
+        font-size: 1.1rem;
+    }
+    .main-footer .footer-socials {
+        gap: 12px;
+    }
+    .main-footer .footer-text {
+        margin-top: 8px;
+        font-size: 0.95rem;
+    }
+}
+
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
@@ -515,8 +499,8 @@ body {
 
     /* .container - Κεντράρισμα και αφαίρεση περιττών περιθωρίων/padding για το ΚΥΡΙΩΣ ΠΕΡΙΕΧΟΜΕΝΟ */
     .main-content .container {
-        /* Μηδενίζουμε το padding για να εκμεταλλευτούμε όλο το πλάτος */
-        padding: 0; /* ΝΕΟ: Μηδενικό padding για να εξαλείψουμε κάθε πιθανότητα κενού από εδώ */
+        /* Μειώνουμε το padding στο ελάχιστο για να εκμεταλλευτούμε όλο το πλάτος */
+        padding: 0 5px; /* Μείωση σε 5px για να είναι σχεδόν άκρη με άκρη */
     }
 
     .stream-layout {
@@ -528,11 +512,10 @@ body {
     .video-player-section,
     .live-chat-section {
         width: 100%; /* Παίρνει όλο το πλάτος */
-        max-width: 500px;
+        max-width: 500px; /* Προσθήκη max-width για καλύτερη εμφάνιση σε μεγαλύτερα κινητά */
+        /* box-sizing: border-box; - Αυτό είναι πλέον καθολικό, δεν χρειάζεται εδώ */
         margin: 0 auto;
-        padding: 15px;
-        /* ΝΕΟ: Εξασφάλιση ότι δεν ξεφεύγει */
-        overflow: hidden; /* Κόβει τυχόν εσωτερικό περιεχόμενο που ξεφεύγει */
+        padding: 15px; /* Μείωση padding μέσα στα sections αν χρειάζεται για να χωρέσουν */
     }
 
     .live-overlay {
@@ -565,4 +548,166 @@ body {
         flex-direction: column;
         gap: 15px;
     }
+    .row.primary {
+    grid-template-columns: 1fr;
+  }
+}
+ /* Contests style */
+.bg-card {
+   background: rgba(255, 245, 238, 0.044);
+    border-radius: 18px;
+    padding: 40px 30px;
+    margin: 40px auto;
+    max-width: 900px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.bg-card .container {
+    flex: 2;
+    min-width: 250px;
+}
+
+.bg-card h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.bg-card p {
+     color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+    text-align: center;
+}
+
+.img-cont {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 200px;
+}
+
+.img-cont img {
+    border-radius: 60%;
+    width: 260px;
+    height: 260px;
+    object-fit: cover;
+    box-shadow: 0 8px 32px var(--shadow-color);
+    border: 4px solid var(--accent-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.img-cont img:hover {
+    transform: scale(1.04) rotate(-2deg);
+    box-shadow: 0 12px 36px var(--accent-color);
+}
+
+@media (max-width: 900px) {
+    .bg-card {
+        flex-direction: column;
+        padding: 25px 10px;
+        gap: 25px;
+    }
+    .img-cont img {
+        width: 180px;
+        height: 180px;
+    }
+}
+/* --- Contact Form Styles --- */
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin: 0 auto;
+    max-width: 420px;
+    background: none;
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 13px 15px;
+    border: none;
+    border-radius: 8px;
+    color: var(--light-text);
+    font-size: 1rem;
+    font-family: inherit;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: background 0.2s, box-shadow 0.2s;
+    resize: none;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    outline: none;
+    background-color: rgba(1, 170, 242, 0.08);
+    box-shadow: 0 0 0 2px var(--accent-color);
+}
+
+#contact-form textarea {
+    min-height: 110px;
+    max-height: 260px;
+}
+
+#contact-form button[type="submit"] {
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 13px 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 5px;
+}
+
+#contact-form button[type="submit"]:hover {
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    transform: translateY(-2px) scale(1.03);
+}
+
+@media (max-width: 600px) {
+    .contact-form {
+        max-width: 100%;
+        padding: 0 2px;
+    }
+}
+.about-station {
+  background-color: #111;
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+    margin: 60px auto;
+  font-family: 'Arial', sans-serif;
+}
+
+.about-station h2 {
+  color: red;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.about-station p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 10px auto;
+  line-height: 1.6;
+}
+
+.about-station .signature {
+  color: red;
+  font-weight: bold;
+  margin-top: 20px;
+  font-size: 1.2rem;
 }
