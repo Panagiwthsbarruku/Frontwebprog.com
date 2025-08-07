@@ -1,24 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Menu Toggle Functionality (παραμένει ως έχει) ---
     const menuToggle = document.getElementById('menu-toggle');
     const mainNav = document.getElementById('main-nav');
-    const body = document.body;
+    const menuIcon = menuToggle.querySelector('i'); // Παίρνουμε το i tag
 
     if (menuToggle && mainNav) {
         menuToggle.addEventListener('click', () => {
+            // Εναλλαγή της κλάσης 'active' στο mainNav για να εμφανίζεται/κρύβεται
             mainNav.classList.toggle('active');
-            // body.classList.toggle('menu-open');
+
+            // Τροποποίηση: Εναλλαγή των κλάσεων του Font Awesome
+            if (mainNav.classList.contains('active')) {
+                // Αν το μενού είναι ανοιχτό, εμφάνισε το X
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                // Αν το μενού είναι κλειστό, εμφάνισε το hamburger
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
         });
 
         document.querySelectorAll('.main-nav a').forEach(link => {
             link.addEventListener('click', () => {
                 if (mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
-                    // body.classList.remove('menu-open');
+                    // Τροποποίηση: Επαναφορά του hamburger icon όταν κλείνει το μενού
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
                 }
             });
         });
     }
+});
+document.addEventListener('DOMContentLoaded', () => {;
     const listenButton = document.querySelector('.listen-button');
     const radioStreamUrl = 'http://stream.radiojar.com/t0x7dyqmsuhvv'; 
     let audioPlayer = null; 
