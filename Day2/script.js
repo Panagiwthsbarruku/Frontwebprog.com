@@ -1,20 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Κώδικας για το μενού (Menu Toggle)
     const menuToggle = document.getElementById('menu-toggle');
     const mainNav = document.getElementById('main-nav');
-    const menuIcon = menuToggle.querySelector('i'); // Παίρνουμε το i tag
+    const menuIcon = menuToggle.querySelector('i');
 
     if (menuToggle && mainNav) {
         menuToggle.addEventListener('click', () => {
-            // Εναλλαγή της κλάσης 'active' στο mainNav για να εμφανίζεται/κρύβεται
             mainNav.classList.toggle('active');
-
-            // Τροποποίηση: Εναλλαγή των κλάσεων του Font Awesome
             if (mainNav.classList.contains('active')) {
-                // Αν το μενού είναι ανοιχτό, εμφάνισε το X
                 menuIcon.classList.remove('fa-bars');
                 menuIcon.classList.add('fa-times');
             } else {
-                // Αν το μενού είναι κλειστό, εμφάνισε το hamburger
                 menuIcon.classList.remove('fa-times');
                 menuIcon.classList.add('fa-bars');
             }
@@ -24,82 +21,56 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 if (mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
-                    // Τροποποίηση: Επαναφορά του hamburger icon όταν κλείνει το μενού
                     menuIcon.classList.remove('fa-times');
                     menuIcon.classList.add('fa-bars');
                 }
             });
         });
     }
-});
-document.addEventListener('DOMContentLoaded', () => {;
-    const listenButton = document.querySelector('.listen-button');
-    const radioStreamUrl = 'http://stream.radiojar.com/t0x7dyqmsuhvv'; 
+
+    // Κώδικας για τα κουμπιά "ΑΚΟΥΣΤΕ"
+    const listenButtons = document.querySelectorAll('.listen-button');
+    const radioStreamUrl = 'https://stream.radiojar.com/t0x7dyqmsuhvv'; // Έγινε αλλαγή από http σε https
     let audioPlayer = null; 
-    if (listenButton) {
-        listenButton.addEventListener('click', () => {
-            if (audioPlayer && !audioPlayer.paused) {
-                audioPlayer.pause();
-                audioPlayer = null; 
-                listenButton.innerHTML = '<i class="fas fa-play"></i> ΑΚΟΥΣΤΕ';
-                listenButton.classList.remove('playing');
-                console.log("Ραδιοφωνικός σταθμός σταμάτησε.");
-            } else {
-                audioPlayer = new Audio(radioStreamUrl);
-                audioPlayer.volume = 0.8;
-                audioPlayer.play()
-                    .then(() => {
-                        console.log("Ραδιοφωνικός σταθμός ξεκίνησε.");
-                        listenButton.innerHTML = '<i class="fas fa-pause"></i> ΠΑΥΣΗ';
-                        listenButton.classList.add('playing');
-                    })
-                    .catch(error => {
-                        console.error('Σφάλμα στην αναπαραγωγή του ραδιοφωνικού σταθμού:', error);
-                        alert('Αδυναμία φόρτωσης του ραδιοφωνικού σταθμού. Παρακαλώ δοκιμάστε ξανά αργότερα.');
-                        listenButton.innerHTML = '<i class="fas fa-play"></i> ΑΚΟΥΣΤΕ';
-                        listenButton.classList.remove('playing');
-                    });
-            }
-        });
 
-        if (audioPlayer) {
-            audioPlayer.addEventListener('error', (e) => {
-                console.error('Σφάλμα αναπαραγωγής ήχου:', e);
-                alert('Παρουσιάστηκε σφάλμα στην αναπαραγωγή του ραδιοφωνικού σταθμού.');
-                listenButton.innerHTML = '<i class="fas fa-play"></i> ΑΚΟΥΣΤΕ';
-                listenButton.classList.remove('playing');
-                audioPlayer = null;
+    // Δημιουργούμε μια συνάρτηση που χειρίζεται την αναπαραγωγή
+    function togglePlayback(button) {
+        if (audioPlayer && !audioPlayer.paused) {
+            audioPlayer.pause();
+            audioPlayer = null; 
+            listenButtons.forEach(btn => {
+                btn.innerHTML = '<i class="fa-solid fa-play"></i> ΑΚΟΥΣΤΕ';
+                btn.classList.remove('playing');
             });
+            console.log("Ραδιοφωνικός σταθμός σταμάτησε.");
+        } else {
+            audioPlayer = new Audio(radioStreamUrl);
+            audioPlayer.volume = 0.8;
+            audioPlayer.play()
+                .then(() => {
+                    console.log("Ραδιοφωνικός σταθμός ξεκίνησε.");
+                    listenButtons.forEach(btn => {
+                        btn.innerHTML = '<i class="fa-solid fa-pause"></i> ΠΑΥΣΗ';
+                        btn.classList.add('playing');
+                    });
+                })
+                .catch(error => {
+                    console.error('Σφάλμα στην αναπαραγωγή του ραδιοφωνικού σταθμού:', error);
+                    alert('Αδυναμία φόρτωσης του ραδιοφωνικού σταθμού. Παρακαλώ δοκιμάστε ξανά αργότερα.');
+                    listenButtons.forEach(btn => {
+                        btn.innerHTML = '<i class="fa-solid fa-play"></i> ΑΚΟΥΣΤΕ';
+                        btn.classList.remove('playing');
+                    });
+                });
         }
     }
-    const chatMessagesContainer = document.getElementById('chat-messages');
-    const chatForm = document.getElementById('chat-form');
-    const chatInput = document.getElementById('chat-input');
 
-    function addChatMessage(username, message, isSelf = false) {
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('chat-message');
-        if (isSelf) {
-            messageElement.classList.add('self-message');
-        }
-        messageElement.innerHTML = `<strong>${username}:</strong> ${message}`;
-        chatMessagesContainer.appendChild(messageElement);
-        chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-    }
-
-    chatForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const message = chatInput.value.trim();
-        if (message) {
-            console.log("Sending message:", message);
-            addChatMessage("Εσύ", message, true);
-            chatInput.value = '';
-        }
+    // Προσθέτουμε τον event listener σε κάθε κουμπί
+    listenButtons.forEach(button => {
+        button.addEventListener('click', () => togglePlayback(button));
     });
 
-    setTimeout(() => addChatMessage("Μουσικόφιλος", "Πολύ ωραία μουσική, μπράβο σας!"), 2000);
-    setTimeout(() => addChatMessage("LiveFan", "Τι υπέροχη ατμόσφαιρα!"), 4000);
-    setTimeout(() => addChatMessage("DJ_Groove", "Παίξτε κάτι πιο upbeat μετά!"), 6000);
+    // Κώδικας για το smooth scrolling
     document.querySelectorAll('.main-nav a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -108,21 +79,15 @@ document.addEventListener('DOMContentLoaded', () => {;
             });
         });
     });
-});
-document.addEventListener('DOMContentLoaded', () => {
-    // ... (Your existing menu toggle, radio player, chat code) ...
 
-    // --- Share Stream Button Functionality ---
+    // Κώδικας για το κουμπί Share Stream
     const shareStreamButton = document.getElementById('share-stream-button');
 
     if (shareStreamButton) {
         shareStreamButton.addEventListener('click', (e) => {
-            e.preventDefault(); // Prevent default link behavior
-
-            const pageUrl = window.location.href; // Gets the URL of your current page
-            const pageTitle = "Live Music Stream - " + document.title; // Customize title for sharing
-
-            // Check if the Web Share API is available (modern browsers on mobile/desktop)
+            e.preventDefault();
+            const pageUrl = window.location.href;
+            const pageTitle = "Live Music Stream - " + document.title;
             if (navigator.share) {
                 navigator.share({
                         title: pageTitle,
@@ -132,16 +97,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     .catch((error) => console.error('Web Share API failed:', error));
             } else {
                 const fallbackMessage = `Μοιραστείτε αυτό το live stream! Αντιγράψτε τον σύνδεσμο: \n\n${pageUrl}`;
-                
                 navigator.clipboard.writeText(pageUrl).then(() => {
                     alert('Ο σύνδεσμος αντιγράφηκε στο πρόχειρο!\n\n' + fallbackMessage);
                 }).catch(() => {
-                    // If clipboard API fails (e.g., not secure context, or permission denied)
                     prompt('Αντιγράψτε αυτόν τον σύνδεσμο για να μοιραστείτε:', pageUrl);
                 });
             }
         });
     }
-
-    // ... (Rest of your existing script.js code) ...
 });
