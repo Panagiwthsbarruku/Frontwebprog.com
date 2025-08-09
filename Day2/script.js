@@ -33,37 +33,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const radioStreamUrl = 'https://stream.radiojar.com/t0x7dyqmsuhvv'; // Έγινε αλλαγή από http σε https
     let audioPlayer = null; 
 
-    // Δημιουργούμε μια συνάρτηση που χειρίζεται την αναπαραγωγή
-    function togglePlayback(button) {
-        if (audioPlayer && !audioPlayer.paused) {
-            audioPlayer.pause();
-            audioPlayer = null; 
-            listenButtons.forEach(btn => {
-                btn.innerHTML = '<i class="fa-solid fa-play"></i> ΑΚΟΥΣΤΕ';
-                btn.classList.remove('playing');
-            });
-            console.log("Ραδιοφωνικός σταθμός σταμάτησε.");
-        } else {
-            audioPlayer = new Audio(radioStreamUrl);
-            audioPlayer.volume = 0.8;
-            audioPlayer.play()
-                .then(() => {
-                    console.log("Ραδιοφωνικός σταθμός ξεκίνησε.");
-                    listenButtons.forEach(btn => {
-                        btn.innerHTML = '<i class="fa-solid fa-pause"></i> ΠΑΥΣΗ';
-                        btn.classList.add('playing');
-                    });
-                })
-                .catch(error => {
-                    console.error('Σφάλμα στην αναπαραγωγή του ραδιοφωνικού σταθμού:', error);
-                    alert('Αδυναμία φόρτωσης του ραδιοφωνικού σταθμού. Παρακαλώ δοκιμάστε ξανά αργότερα.');
-                    listenButtons.forEach(btn => {
-                        btn.innerHTML = '<i class="fa-solid fa-play"></i> ΑΚΟΥΣΤΕ';
-                        btn.classList.remove('playing');
-                    });
+   // Εντοπίζουμε το logo box
+const logoBox = document.querySelector(".logo-box");
+
+// Τροποποίηση της συνάρτησης togglePlayback
+function togglePlayback(button) {
+    if (audioPlayer && !audioPlayer.paused) {
+        audioPlayer.pause();
+        audioPlayer = null; 
+        listenButtons.forEach(btn => {
+            btn.innerHTML = '<i class="fa-solid fa-play"></i> ΑΚΟΥΣΤΕ';
+            btn.classList.remove('playing');
+        });
+        // Σταματάει το animation
+        logoBox.classList.remove("playing");
+        console.log("Ραδιοφωνικός σταθμός σταμάτησε.");
+    } else {
+        audioPlayer = new Audio(radioStreamUrl);
+        audioPlayer.volume = 0.8;
+        audioPlayer.play()
+            .then(() => {
+                console.log("Ραδιοφωνικός σταθμός ξεκίνησε.");
+                listenButtons.forEach(btn => {
+                    btn.innerHTML = '<i class="fa-solid fa-pause"></i> ΠΑΥΣΗ';
+                    btn.classList.add('playing');
                 });
-        }
+                // Ξεκινάει το animation
+                logoBox.classList.add("playing");
+            })
+            .catch(error => {
+                console.error('Σφάλμα στην αναπαραγωγή του ραδιοφωνικού σταθμού:', error);
+                alert('Αδυναμία φόρτωσης του ραδιοφωνικού σταθμού. Παρακαλώ δοκιμάστε ξανά αργότερα.');
+                listenButtons.forEach(btn => {
+                    btn.innerHTML = '<i class="fa-solid fa-play"></i> ΑΚΟΥΣΤΕ';
+                    btn.classList.remove('playing');
+                });
+                // Αφαιρεί το animation σε περίπτωση αποτυχίας
+                logoBox.classList.remove("playing");
+            });
     }
+}
 
     // Προσθέτουμε τον event listener σε κάθε κουμπί
     listenButtons.forEach(button => {
@@ -104,5 +113,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
+    }
+});
+//Κώδικας για κεντρική φωτογραφίας//
+const audio = document.getElementById("radioPlayer");
+const logoBox = document.querySelector(".logo-box");
+const playBtn = document.getElementById("playBtn");
+
+playBtn.addEventListener("click", () => {
+    if (audio.paused) {
+        audio.play();
+        logoBox.classList.add("playing");
+        playBtn.textContent = "⏸ ΣΤΟΠ";
+    } else {
+        audio.pause();
+        logoBox.classList.remove("playing");
+        playBtn.textContent = "▶ ΑΚΟΥΣΤΕ";
     }
 });
