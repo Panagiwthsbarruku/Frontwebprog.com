@@ -117,18 +117,18 @@ body {
     padding: 10px 0;
     border-bottom: 2px solid transparent; /* For underline effect */
     margin: 0;
-    width: fit-content; /* Ensures the underline is only as wide as the text */
-    text-align: center; /* Centers the text within the li */
+    width: fit-content; 
+    text-align: center; 
     flex-shrink: 0; /* Prevents shrinking on smaller screens */
     text-decoration: none;
 }
 .main-nav a {
-    color: var(--light-text);
+    color: var(--gradient-end-color);
     text-decoration: none;
     padding: 10px 0;
     display: block; 
     transition: color 0.3s ease, border-color 0.3s ease;
-    position: relative; /* For pseudo-element positioning */
+    position: relative;
     font-weight: 600; /* Slightly bolder for better visibility */
     font-size: 1.1rem; /* Consistent font size */
     font-family: 'Open Sans', sans-serif; /* Consistent font family */
@@ -142,9 +142,9 @@ body {
     content: '';
     position: absolute;
     width: 0;
-    height: 2px;
-    background-color: var(--accent-color);
-    bottom: -5px;
+    height: 4px;
+    background-color: green;
+    bottom: -6px;
     left: 50%;
     transform: translateX(-50%);
     transition: width 0.3s ease;
@@ -157,7 +157,7 @@ body {
 
 .main-nav a:hover,
 .main-nav a:focus {
-    color: var(--accent-color);
+    color:rgb(122, 201, 4);
 }
 /* --- buttons-socials --- */
 .main-nav .bottons-socials {
@@ -228,28 +228,57 @@ body {
     transition: background 0.3s ease;
 }
 .center-logo {
-  position: absolute;
+    position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 2;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .logo-box {
-  color: white;
-  padding: 40px 60px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-  font-size: 1.5rem;
+    position: relative;
+    display: inline-block;
 }
-.center-logo img {
-    width: 200px; /* Adjust as needed */
-    height: auto;
-    transition: transform 0.3s ease;
+
+.logo-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+    z-index: 2; /* Ensures the image is above the pulse effect */
 }
-.center-logo img:hover {
-    transform: scale(1.05);
+
+/* Το εφέ θα εμφανίζεται μόνο όταν η κλάση playing υπάρχει */
+.logo-box.playing::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    background: rgba(0, 153, 255, 0.856);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    animation: pulseAnim 1.5s infinite ease-in-out;
+    z-index: 1;
+}
+
+@keyframes pulseAnim {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0.3;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
 }
 
 
@@ -275,19 +304,51 @@ background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
 .center-logo .listen-button:hover i{
     transform: translateX(5px);
 }
-.logo-streams {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
+/*----Promo Video Section---*/
+ iframe {
+      width: 100%;
+      margin: 40px auto;
+      justify-content: center;
+        display: block;
+      max-width: 640px;
+      height: 360px;
+      border: none;
+      border-radius: 10px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
 }
-.logo-streams img{
-   box-shadow: 1px 3px 20px rgb(7, 12, 2);
-    width: 350px; /* Adjust as needed */
-    height: 350px; /* Adjust as needed */
-    object-fit: cover; /* Ensures the image covers the area without distortion */
-    transition: transform 0.3s ease;
+.btn-subscribe {
+      margin-top: 20px;
+    background: #120202;
+      color: rgb(255, 255, 255);
+      padding: 12px 24px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease;
+       display: block;
+       margin: 20px auto;
+        width: fit-content;
+        text-align: center;
 }
+.btn-subscribe i {
+        margin-left: 8px;
+        font-size: 1.2em;
+        transition: transform 0.3s ease;
+          display: inline-flex;
+        align-items: center;
+        gap: 5px;
+}
+.btn-subscribe:hover {
+        color: #111;
+        transform: scale(1.05);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        background: linear-gradient(45deg, var(--accent-color), var(--dark-bg-secondary));
+    }
 /*Social-buttons---*/
 .social-buttons{
     justify-content: center;
@@ -298,12 +359,10 @@ background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
 }
 .social-buttons i {
     font-size: 1.1em;
-    color: var(--light-text);
+      color: var(--primary-color);
     transition: color 0.3s ease, transform 0.3s ease;
     padding: 10px;
     border-radius: 50%;
-    background-color: var(--medium-bg);
-    box-shadow: 0 4px 10px var(--shadow-color);
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -324,6 +383,17 @@ background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
     padding: 5px 10px;
     max-width: 300px; /* Ensures the text doesn't stretch too wide */
     margin: 10% auto;
+    animation: slideIn 0.5s ease-out forwards;
+}
+@keyframes slideIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 .social-buttons a {
     color: var(--light-text);
@@ -354,7 +424,7 @@ background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
 .main-footer .footer-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0px 20px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -409,7 +479,7 @@ background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
 .main-footer .footer-text {
     flex: 1 1 100%;
     text-align: center;
-    margin-top: 12px;
+    margin-top: -40px;
 }
 
 .main-footer .footer-text p {
@@ -509,20 +579,6 @@ background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
         gap: 20px;
     }
 
-    .video-player-section,
-    .live-chat-section {
-        width: 100%; /* Παίρνει όλο το πλάτος */
-        max-width: 500px; /* Προσθήκη max-width για καλύτερη εμφάνιση σε μεγαλύτερα κινητά */
-        /* box-sizing: border-box; - Αυτό είναι πλέον καθολικό, δεν χρειάζεται εδώ */
-        margin: 0 auto;
-        padding: 15px; /* Μείωση padding μέσα στα sections αν χρειάζεται για να χωρέσουν */
-    }
-
-    .live-overlay {
-        left: 50%;
-        transform: translateX(-50%);
-        top: 10px;
-    }
 
     .stream-info {
         text-align: center;
