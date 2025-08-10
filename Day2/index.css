@@ -41,13 +41,15 @@ body {
 
 /* --- Header --- */
 .main-header {
-    background-color: rgba(0, 0, 0, 0); /* Slightly transparent for gradient to show */
+    background-color: rgba(8, 166, 198, 0.448); /* Slightly transparent for gradient to show */
     padding: 15px 0;
     box-shadow: 0 4px 8px var(--shadow-color);
     position: sticky;
     top: 0;
     z-index: 1000;
     backdrop-filter: blur(5px); /* Blur effect */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    
 }
 
 .main-header .container {
@@ -85,7 +87,7 @@ body {
 }
 
 .menu-toggle:hover {
-    color: var(--accent-color);
+    color: greenyellow;
 }
 
 .menu-toggle.active i.fa-bars {
@@ -412,15 +414,12 @@ background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
 
 /* --- Footer --- */
 .main-footer {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--light-text);
-    padding: 30px 0 15px 0;
+    background: var(--primary-color);
+    padding: 40px 0 20px 0;
     box-shadow: 0 -4px 16px var(--shadow-color);
     position: relative;
     z-index: 10;
-    font-family: 'Open Sans', sans-serif;
 }
-
 .main-footer .footer-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -453,7 +452,7 @@ background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
 
 .main-footer .footer-socials {
     display: flex;
-    gap: 18px;
+    gap: 8px;
     align-items: center;
 }
 
@@ -462,7 +461,7 @@ background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
     font-size: 1.3rem;
     background: var(--medium-bg);
     border-radius: 50%;
-    padding: 8px;
+    padding: 18px;
     transition: color 0.3s, background 0.3s, transform 0.2s;
     display: flex;
     align-items: center;
