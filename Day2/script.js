@@ -4,16 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
     const mainNav = document.getElementById('main-nav');
     const menuIcon = menuToggle.querySelector('i');
-
     if (menuToggle && mainNav) {
         menuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
             if (mainNav.classList.contains('active')) {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-times');
+                menuIcon.classList.remove('ri-menu-3-line');
+                menuIcon.classList.add('ri-close-line');
             } else {
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
+                menuIcon.classList.remove('ri-close-line');
+                menuIcon.classList.add('ri-menu-3-line');
             }
         });
 
@@ -21,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 if (mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
-                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.remove('ri-close-line');
                     menuIcon.classList.add('fa-bars');
                 }
             });
