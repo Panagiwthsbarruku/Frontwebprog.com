@@ -215,7 +215,8 @@ nav a:hover::after {
 }
 /* tags list*/
 .tags-list{
-  width: 60rem;
+  width: 100%;          /* να πιάνει όλο το διαθέσιμο πλάτος */
+  max-width: 60rem; /* μέγιστο πλάτος για να μην απλώνεται πολύ σε μεγάλες οθόνες */
   font-family: 'Montserrat';
   position: relative;
   overflow: hidden;
@@ -769,3 +770,4 @@ max-height: 100px;
     }
   }
 /* End of History Section */
+
