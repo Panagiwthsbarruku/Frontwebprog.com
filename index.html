@@ -1,310 +1,149 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-   <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frontend WebDeveloper</title>
-    <meta name="description" content="Frontend Developer Portfolio showcasing skills in HTML, CSS, JavaScript, and UI/UX design. Explore projects and contact for collaboration.">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/brands.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+      <meta name="description" content="Frontend Developer Portfolio showcasing skills in HTML, CSS, JavaScript, and UI/UX design. Explore projects and contact for collaboration.">
     <meta name="keywords" content="Frontend Developer, Web Development, HTML, CSS,JavaScript, UI/UX Design, Portfolio, Projects, Contact">
     <meta name="author" content="Frontend Developer">
-    <link rel="icon" href="MyLogo.jpg" type="image/x-icon">
-    <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="MyLogo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Καλώς ήλθατε στον ιστότοπο μου</title>
 </head>
 <body>
-    <body class="bg-gray-100 text-custom-gray">
-    <div class="min-h-screen">
-        <!-- Navbar -->
-        <nav class="bg-white shadow-sm py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 z-50">
-            <div class="text-lg font-bold text-gray-800">Frontend</div>
-            <div class="navbar-desktop hidden md:flex space-x-8">
-                <a href="#hero" class="text-gray-600 hover:text-custom-blue font-medium transition-colors">Home</a>
-                <a href="#about" class="text-gray-600 hover:text-custom-blue font-medium transition-colors">About Me</a>
-                <a href="#skills" class="text-gray-600 hover:text-custom-blue font-medium transition-colors">Skills</a>
-                <a href="#projects" class="text-gray-600 hover:text-custom-blue font-medium transition-colors">Projects</a>
-                <a href="#learn-coding" class="text-gray-600 hover:text-custom-blue font-medium transition-colors">Learn Coding</a>
-                <a href="#contact" class="text-gray-600 hover:text-custom-blue font-medium transition-colors">Contact</a>
-            </div>
-            <div class="hamburger-menu md:hidden cursor-pointer text-gray-800 text-2xl">
-                <i class="fas fa-bars"></i>
-            </div>
-            <ul class="nav-links-mobile md:hidden absolute top-full left-0 right-0 bg-white shadow-lg text-center py-2">
-                <li><a href="#hero" class="block py-2 text-gray-800 hover:bg-gray-100">Home</a></li>
-                <li><a href="#about" class="block py-2 text-gray-800 hover:bg-gray-100">About Me</a></li>
-                <li><a href="#skills" class="block py-2 text-gray-800 hover:bg-gray-100">Skills</a></li>
-                <li><a href="#projects" class="block py-2 text-gray-800 hover:bg-gray-100">Projects</a></li>
-                <li><a href="#learn-coding" class="block py-2 text-gray-800 hover:bg-gray-100">Learn Coding</a></li>
-                <li><a href="#contact" class="block py-2 text-gray-800 hover:bg-gray-100">Contact</a></li>
-            </ul>
-        </nav>
-
-        <!-- Hero Section -->
-        <section id="hero" class="bg-custom-blue text-white py-20 px-6 md:px-12 lg:px-24 flex flex-col md:flex-row items-center justify-between min-h-[600px] relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-br from-purple-700 to-blue-700 opacity-20"></div>
-            <div class="hero-content relative z-10 flex flex-col md:flex-row items-center md:items-start justify-between w-full max-w-7xl mx-auto">
-                <div class="hero-text text-center md:text-left md:w-3/5 lg:w-2/3">
-                   <span class="inline-flex items-center bg-white bg-opacity-20 text-white text-sm font-bold px-4 py-2 rounded-full mb-6 gap-2">
-                    <i class="fas fa-code"></i> Μάθετε <span id="dynamic-text-learn" class="typing-text-learn"></span><span class="blinking-cursor-learn">|</span>
-                </span>
-                    <h1 class="text-5xl lg:text-6xl font-extrabold leading-tight mb-4">Hi, Im Frontend Developer.<br>Creating beautiful web experiences.</h1>
-                    <p class="text-lg lg:text-xl text-purple-100 mb-8 max-w-xl">I'm a creative Frontend Developer and UI/UX Designer skilled in crafting engaging digital products. Let's build something great together!</p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8 justify-center md:justify-start">
-                        <a href="#projects" class="btn-primary-custom">View Portfolio</a>
-                        <a href="#contact" class="btn-secondary-custom">Let's Connect</a>
-                    </div>
-                    <div class="flex space-x-6 text-2xl justify-center md:justify-start">
-                        <a href="#" class="text-white hover:text-purple-300 transition-colors"><i class="fab fa-instagram"></i></a>
-                        <a href="https://github.com/Panagiwthsbarruku" class="text-white hover:text-purple-300 transition-colors"><i class="fab fa-github"></i></a>
-                        <a href="https://www.youtube.com/@WebDeveloper-op1fb" class="text-white hover:text-purple-300 transition-colors"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="hero-image md:w-2/5 lg:w-1/3 flex justify-center md:justify-end mt-8 md:mt-0">
-                    <img src="MyLogo.jpg" class="rounded-full w-64 h-64 object-cover border-4 border-white shadow-lg-custom">
-                </div>
-            </div>
-        </section>
-
-        <!-- About Me Section -->
-        <section id="about" class="py-20 px-6 md:px-12 lg:px-24 bg-white">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl font-bold text-center mb-12">About Me</h2>
-                <div class="flex flex-col md:flex-row items-center md:items-start gap-12">
-                    <div class="about-text md:w-1/2 text-lg leading-relaxed text-custom-gray">
-                        <p class="mb-4">With 5+ years of experience, I specialize in creating pixel-perfect interfaces and intuitive user experiences. Skilled in responsive design, accessibility, and SEO for top-tier web browsers, devices and development.</p>
-                        <p class="mb-6">My passion lies in transforming complex problems into elegant, user-friendly solutions that not only look good but also perform exceptionally. I thrive in collaborative environments and am always eager to learn new technologies.</p>
-                    </div>
-                    <div class="about-icons md:w-1/2 grid grid-cols-2 sm:grid-cols-3 gap-8 p-4 bg-gray-50 rounded-xl shadow-inner">
-                        <div class="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2.8 14H4.83961L4.2947 16.7245L10.0393 18.8787L17.2665 16.4697L18.3604 11H3.4L3.8 9H18.7604L19.5604 5H4.6L5 3H22L19 18L10 21L2 18L2.8 14Z" style="fill: blue;"></path></svg>
-                            <span class="text-sm font-medium text-gray-700">CSS</span>
-                        </div>
-                        <div class="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.3344 16.055 12.4764 17.243C13.2904 17.969 14.3024 18.332 15.5124 18.332 16.4364 18.31 17.1404 18.0717 17.6244 17.617 18.1157 17.155 18.3614 16.605 18.3614 15.967 18.3614 15.3437 18.1891 14.8303 17.8444 14.427 17.4997 14.0237 16.9204 13.701 16.1064 13.459 15.4317 13.2537 14.9551 13.0667 14.6764 12.898 14.3977 12.722 14.2584 12.5093 14.2584 12.26 14.2584 12.0327 14.3721 11.8493 14.5994 11.71 14.8267 11.5707 15.1311 11.501 15.5124 11.501 15.7911 11.501 16.1064 11.556 16.4584 11.666 16.8104 11.7613 17.1221 11.9153 17.3934 12.128L18.1634 10.929C17.4887 10.3863 16.5941 10.115 15.4794 10.115 14.6801 10.115 14.0237 10.3203 13.5104 10.731 12.9824 11.1417 12.7184 11.6513 12.7184 12.26 12.7257 12.9053 12.9384 13.4077 13.3564 13.767 13.7817 14.1263 14.3867 14.4197 15.1714 14.647 15.8241 14.8523 16.2677 15.0577 16.5024 15.263 16.7297 15.4683 16.8434 15.7177 16.8434 16.011 16.8434 16.297 16.7297 16.517 16.5024 16.671 16.2677 16.8323 15.9304 16.913 15.4904 16.913 14.7717 16.9203 14.0531 16.6343 13.3344 16.055ZM7.80405 16.693C7.58405 16.561 7.37872 16.3667 7.18805 16.11L6.15405 16.957C6.46205 17.4777 6.84339 17.8407 7.29805 18.046 7.72339 18.2367 8.21105 18.332 8.76105 18.332 9.06172 18.332 9.37339 18.2843 9.69605 18.189 10.0187 18.0937 10.3157 17.9323 10.5871 17.705 11.0637 17.3237 11.3131 16.7003 11.3351 15.835V10.247H9.85005V15.549C9.85005 16.055 9.73639 16.4107 9.50905 16.616 9.28172 16.814 8.99572 16.913 8.65105 16.913 8.32105 16.913 8.03872 16.8397 7.80405 16.693ZM3 6C3 4.34315 4.34315 3 6 3H18C19.6569 3 21 4.34315 21 6V18C21 19.6569 19.6569 21 18 21H6C4.34315 21 3 19.6569 3 18V6ZM6 5C5.44772 5 5 5.44772 5 6V18C5 18.5523 5.44772 19 6 19H18C18.5523 19 19 18.5523 19 18V6C19 5.44772 18.5523 5 18 5H6Z" style="fill:gold;" ></path></svg>
-                            <span class="text-sm font-medium text-gray-700">SCRIPT JS</span>
-                        </div>
-                        <div class="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48"><path fill="#0277BD" d="M24.047,5c-1.555,0.005-2.633,0.142-3.936,0.367c-3.848,0.67-4.549,2.077-4.549,4.67V14h9v2H15.22h-4.35c-2.636,0-4.943,1.242-5.674,4.219c-0.826,3.417-0.863,5.557,0,9.125C5.851,32.005,7.294,34,9.931,34h3.632v-5.104c0-2.966,2.686-5.896,5.764-5.896h7.236c2.523,0,5-1.862,5-4.377v-8.586c0-2.439-1.759-4.263-4.218-4.672C27.406,5.359,25.589,4.994,24.047,5z M19.063,9c0.821,0,1.5,0.677,1.5,1.502c0,0.833-0.679,1.498-1.5,1.498c-0.837,0-1.5-0.664-1.5-1.498C17.563,9.68,18.226,9,19.063,9z"></path><path fill="#FFC107" d="M23.078,43c1.555-0.005,2.633-0.142,3.936-0.367c3.848-0.67,4.549-2.077,4.549-4.67V34h-9v-2h9.343h4.35c2.636,0,4.943-1.242,5.674-4.219c0.826-3.417,0.863-5.557,0-9.125C41.274,15.995,39.831,14,37.194,14h-3.632v5.104c0,2.966-2.686,5.896-5.764,5.896h-7.236c-2.523,0-5,1.862-5,4.377v8.586c0,2.439,1.759,4.263,4.218,4.672C19.719,42.641,21.536,43.006,23.078,43z M28.063,39c-0.821,0-1.5-0.677-1.5-1.502c0-0.833,0.679-1.498,1.5-1.498c0.837,0,1.5,0.664,1.5,1.498C29.563,38.32,28.899,39,28.063,39z"></path>
-                            </svg>
-                        <span class="text-sm font-medium text-gray-700">PYTHON</span>
-                        </div>
-                        <div class="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm">
-                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 18.1778L16.6192 16.9222L17.2434 10.1444H9.02648L8.82219 7.88889H17.4477L17.6747 5.67778H6.32535L6.96091 12.3556H14.7806L14.5195 15.2222L12 15.8889L9.48045 15.2222L9.32156 13.3778H7.0517L7.38083 16.9222L12 18.1778ZM3 2H21L19.377 20L12 22L4.62295 20L3 2Z" style="fill:red"></path></svg>
-                            <span class="text-sm font-medium text-gray-700">HTML5</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="py-20 px-6 md:px-12 lg:px-24 bg-gray-50">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl font-bold text-center mb-12">Skills</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="skill-item bg-white p-6 rounded-xl shadow-custom flex flex-col justify-between transition-transform duration-300 hover:scale-105 hover:shadow-lg-custom">
-                        <div>
-                            <div class="text-4xl text-custom-blue mb-4"><i class="fas fa-code"></i></div>
-                            <h3 class="text-2xl font-semibold mb-3 text-gray-800">Frontend Development</h3>
-                            <p class="text-custom-gray mb-4" data-original-description="Εμπειρία σε HTML, CSS, JavaScript, React, Vue.js, και responsive web design. Δημιουργία δυναμικών και διαδραστικών διεπαφών χρήστη.">Εμπειρία σε HTML, CSS, JavaScript, React, Vue.js, και responsive web design. Δημιουργία δυναμικών και διαδραστικών διεπαφών χρήστη.</p>
-                        </div>
-                    </div>
-                    <div class="skill-item bg-white p-6 rounded-xl shadow-custom flex flex-col justify-between transition-transform duration-300 hover:scale-105 hover:shadow-lg-custom">
-                        <div>
-                            <div class="text-4xl text-custom-blue mb-4"><i class="fas fa-palette"></i></div>
-                            <h3 class="text-2xl font-semibold mb-3 text-gray-800">UI/UX Design</h3>
-                            <p class="text-custom-gray mb-4" data-original-description="Σχεδιασμός φιλικών προς τον χρήστη διεπαφών, wireframing, prototyping, και user testing. Εστίαση στην εμπειρία χρήστη.">Σχεδιασμός φιλικών προς τον χρήστη διεπαφών, wireframing, prototyping, και user testing. Εστίαση στην εμπειρία χρήστη.</p>
-                        </div>
-                    </div>
-                    <div class="skill-item bg-white p-6 rounded-xl shadow-custom flex flex-col justify-between transition-transform duration-300 hover:scale-105 hover:shadow-lg-custom">
-                        <div>
-                            <div class="text-4xl text-custom-blue mb-4"><i class="fas fa-tools"></i></div>
-                            <h3 class="text-2xl font-semibold mb-3 text-gray-800">Other Skills</h3>
-                            <p class="text-custom-gray mb-4" data-original-description="Git, Python, Node.js, SQL, Agile Methodologies, Problem Solving, Communication.">Git, Python, Node.js, SQL, Agile Methodologies, Problem Solving, Communication.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="projects" class="py-20 px-6 md:px-12 lg:px-24 bg-white">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl font-bold text-center mb-12">Selected Projects</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project Card 1 -->
-                    <div class="project-item bg-white rounded-xl shadow-custom overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-lg-custom">
-                        <img src="WebGener/img/Sreenshot.png" alt="Project 1" class="w-full h-48 object-cover">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800">Website For Vintage Secret</h3>
-                            <p class="text-custom-gray text-sm mb-4 flex-grow" data-original-description="Ένα υπέροχo website για την Vintage Secret Fashion με επιλογές στην μόδα και μοναδικά κομμάτια">Ένα υπέροχo website για την Vintage Secret Fashion με επιλογές στην μόδα και μοναδικά κομμάτια</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">UI Design</span>
-                                <span class="bg-red-100 text-black-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Html</span>
-                                <span class="bg-blue-100 text-black-800 text-xs font-medium px-2.5 py-0.5 rounded-full">CSS</span>
-                                <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">JavaScript</span>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <a href="WebGener/index.html" class="project-btn-primary text-center">Live Demo</a>
-                                <button class="btn-gemini-project project-btn-secondary text-center">✨ Βελτίωση Περιγραφής</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-item bg-white rounded-xl shadow-custom overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-lg-custom">
-                        <img src="application/img/screenshot.png" alt="Project 2" class="w-full h-48 object-cover">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800">E-commerce Website</h3>
-                            <p class="text-custom-gray text-sm mb-4 flex-grow" data-original-description="Πλήρης ιστοσελίδα ηλεκτρονικού εμπορίου με λειτουργίες καλαθιού και πληρωμών, χτισμένη με HTML, CSS, JavaScript και Node.js backend.">Πλήρης ιστοσελίδα ηλεκτρονικού εμπορίου με λειτουργίες καλαθιού και πληρωμών, χτισμένη με HTML, CSS, JavaScript και Node.js backend.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Web Dev</span>
-                                <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Html</span>
-                                <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">CSS</span>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <a href="application/index.html" class="project-btn-primary text-center">Visit Site</a>
-                                <button class="btn-gemini-project project-btn-secondary text-center">✨ Βελτίωση Περιγραφής</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Project Card 3 -->
-                    <div class="project-item bg-white rounded-xl shadow-custom overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-lg-custom">
-                        <img src="new-debt-manager-app/Στιγμιότυπο οθόνης 2025-07-14 083613.png" alt="Project 3" class="w-full h-48 object-cover">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800">Mobile App Design</h3>
-                            <p class="text-custom-gray text-sm mb-4 flex-grow" data-original-description="Σχεδιασμός UI/UX για μια mobile εφαρμογή διαχείρισης εργασιών, με έμφαση στην απλότητα και την χρηστικότητα.">Σχεδιασμός UI/UX για μια mobile εφαρμογή διαχείρισης εργασιών, με έμφαση στην απλότητα και την χρηστικότητα.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-pink-100 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Mobile UI</span>
-                                <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">UX Research</span>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <a href="new-debt-manager-app/index.html" class="project-btn-primary text-center">View Project</a>
-                                <button class="btn-gemini-project project-btn-secondary text-center">✨ Βελτίωση Περιγραφής</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-  <!-- Project Card 4 -->
-            <div class="project-item bg-white rounded-xl shadow-custom overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-lg-custom">
-                        <img src="Women's-Support-73/Στιγμιότυπο οθόνης 2025-07-14 102734.png" alt="Project 4" class="w-full h-48 object-cover">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800">Mobile App Design</h3>
-                            <p class="text-custom-gray text-sm mb-4 flex-grow" data-original-description="Σχεδιασμός UI/UX για μια mobile εφαρμογή διαχείρισης εργασιών, με έμφαση στην απλότητα και την χρηστικότητα.">Σχεδιασμός UI/UX για μια mobile εφαρμογή διαχείρισης εργασιών, με έμφαση στην απλότητα και την χρηστικότητα.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-pink-100 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Mobile UI</span>
-                                <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">UX Research</span>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <a href="Women's-Support-73/index.html" class="project-btn-primary text-center">View Project</a>
-                                <button class="btn-gemini-project project-btn-secondary text-center">✨ Βελτίωση Περιγραφής</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-         <!-- Project Card 5 -->
-         <div class="project-item bg-white rounded-xl shadow-custom overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-lg-custom">
-                        <img src="Day1/Στιγμιότυπο οθόνης 2025-07-21 092946.png" alt="Project 5" class="w-full h-48 object-cover">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800">Logistics Cender Website</h3>
-                            <p class="text-custom-gray text-sm mb-4 flex-grow" data-original-description="Σχεδιασμός UI/UX για μια mobile εφαρμογή διαχείρισης εργασιών, με έμφαση στην απλότητα και την χρηστικότητα.">Σχεδιασμός UI/UX για μια mobile εφαρμογή διαχείρισης εργασιών, με έμφαση στην απλότητα και την χρηστικότητα.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-pink-100 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Mobile UI</span>
-                                <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">UX Research</span>
-                               <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Html</span>
-                               <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">CSS</span>
-                               <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Js</span>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <a href="Day1/index.html" class="project-btn-primary text-center">View Project</a>
-                                <button class="btn-gemini-project project-btn-secondary text-center">✨ Βελτίωση Περιγραφής</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          <!-- Project Card 6 -->
-       <div class="project-item bg-white rounded-xl shadow-custom overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-lg-custom">
-                        <img src="Day2/img/Στιγμιότυπο οθόνης 2025-07-23 095531.png" alt="Project 6" class="w-full h-48 object-cover">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800">3nicee live Streams Website</h3>
-                            <p class="text-custom-gray text-sm mb-4 flex-grow" data-original-description="Σχεδιασμός UI/UX για μια mobile εφαρμογή διαχείρισης εργασιών, με έμφαση στην απλότητα και την χρηστικότητα.">Σχεδιασμός UI/UX για μια mobile εφαρμογή διαχείρισης εργασιών, με έμφαση στην απλότητα και την χρηστικότητα.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-pink-100 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Mobile UI</span>
-                                <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">UX Research</span>
-                               <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Html</span>
-                               <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">CSS</span>
-                               <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Js</span>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <a href="Day2/index.html" class="project-btn-primary text-center">View Project</a>
-                                <button class="btn-gemini-project project-btn-secondary text-center">✨ Βελτίωση Περιγραφής</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-         <!-- Project Card 7 -->
-         <div class="project-item bg-white rounded-xl shadow-custom overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-lg-custom">
-                        <img src="Day3/Στιγμιότυπο οθόνης 2025-07-27 222830.png" alt="Project 7" class="w-full h-48 object-cover">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800">Log in Website Logistics Center</h3>
-                            <p class="text-custom-gray text-sm mb-4 flex-grow" data-original-description="Σχεδιασμός UI/UX για μια mobile εφαρμογή διαχείρισης εργασιών, με έμφαση στην απλότητα και την χρηστικότητα.">WebSite Logistics Center Login in iconic Design </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-pink-100 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Mobile UI</span>
-                                <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">UX Research</span>
-                               <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Html</span>
-                               <span class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">CSS</span>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <a href="Day3/index.html" class="project-btn-primary text-center">View Project</a>
-                                <button class="btn-gemini-project project-btn-secondary text-center">✨ Βελτίωση Περιγραφής</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <!-- Project Card 8 -->
-        </section>
- <!-- Let's Work Together Section (Contact) -->
-        <section id="contact" class="py-20 px-6 md:px-12 lg:px-24 bg-white">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl font-bold text-center mb-12">Let's Work Together</h2>
-                    <div class="contact-form md:w-1/2 bg-white p-8 rounded-xl shadow-custom">
-                        <h3 class="text-2xl font-semibold mb-6 text-gray-800">Send Me a Message</h3>
-                        <form action="https://formspree.io/f/mldlrpgv" method="POST" class="space-y-6">
-                            <div>
-                                <label for="name" class="sr-only">Your Name</label>
-                                <input type="text" id="name" name="name" placeholder="Your Name" class="contact-input" required>
-                            </div>
-                            <div>
-                                <label for="email" class="sr-only">Your Email</label>
-                                <input type="email" id="email" name="email" placeholder="Your Email" class="contact-input" required>
-                            </div>
-                            <div>
-                                <label for="message" class="sr-only">Your Message</label>
-                                <textarea id="message" name="message" rows="6" placeholder="Your Message" class="contact-input" required></textarea>
-                            </div>
-                            <button type="submit" class="btn-primary-custom w-full flex items-center justify-center gap-2">
-                                <i class="fas fa-paper-plane"></i> Send Message
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="bg-gray-800 text-gray-400 py-8 px-6 md:px-12 lg:px-24">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm">
-                <div class="mb-4 md:mb-0 text-white font-bold text-lg">Frontend</div>
-                <div class="flex space-x-6 mb-4 md:mb-0">
-                    <a href="#" class="footer-link"><i class="fab fa-instagram text-xl"></i></a>
-                    <a href="https://github.com/Panagiwthsbarruku" class="footer-link"><i class="fab fa-github text-xl"></i></a>
-                    <a href="https://www.youtube.com/@WebDeveloper-op1fb" class="footer-link"><i class="fab fa-youtube text-xl"></i></a>
-                </div>
-                <p>&copy; 2025 Frontend. All Rights Reserved.</p>
-            </div>
-        </footer>
+  <header>
+     <div class="logo">
+         <img src="MyLogo.jpg" alt="logo-web" height="50">
+         <h1>FrontDev</h1>
+     </div>
+  <div class="menu-toggle" id="menu-toggle">
+    <span></span><span></span><span></span>
+  </div>
+  <nav id="nav-menu">
+    <a href="#projects">Έργα</a>
+    <a href="Games.html">Παιχνίδια</a>
+    <a href="#pricing">Τιμοκατάλογος</a>
+    <a href="#contact">Επικοινωνία</a>
+     <a href="my_history.html">Το πώς ξεκίνησα</a>
+    <a href="https://www.youtube.com/@WebDeveloper-op1fb"><i class="ri-youtube-line"></i></a>
+     <a href="https://github.com/Panagiwthsbarruku"><i class="ri-github-fill"></i></a>
+  </nav>
+</header>
+<section class="hero">
+  <div class="hero-text">
+    <h2>Προγραμματιστής Ιστών και σχεδιαστής εφαρμογών</h2>
+<span class="inline-flex items-center bg-white bg-opacity-20 text-white text-sm font-bold px-4 py-2 rounded-full mb-6 gap-2">
+<i class="fas fa-code"></i> Μάθετε <span id="dynamic-text-learn" class="typing-text-learn"></span><span class="blinking-cursor-learn">|</span>
+</span>
+    <a  href="#Form" type="button" style="display:block; margin: 5% auto;">Ξεκίνα Σήμερα</a>
+     <div class="social-icons">
+      <a href="https://www.youtube.com/@WebDeveloper-op1fb"><i class="ri-youtube-line"></i></a>
+     <a href="https://www.youtube.com/@WebDeveloper-op1fb"><i class="ri-github-fill"></i></a>
     </div>
-    <script src="index.js"></script>
+  </div>
+  <div class="hero-img">
+    <img src="MyLogo.jpg" width="200"/>
+  </div>
+</section>
+<section id="projects"> 
+  <h2>Τα Έργα</h2>
+  <div class="projects">
+    <div class="card">
+      <h3>Σύγχρονη Ιστοσελίδα E-commerce </h3>
+      <p> Ένα ισχυρό ηλεκτρονικό κατάστημα με ενσωμάτωση πληρωμών και φιλόξενο για τον χρήστη σχεδιασμό.</p>
+    </div>
+    <div class="card">
+      <h3>Εταιρικό Portfolio </h3>
+      <p>Κομψές portfolio ιστοσελίδες για επαγγελματίες και επιχειρήσεις.</p>
+    </div>
+    <div class="card">
+      <h3>Εργαλεία Ενσωμάτωσης Δεδομένων </h3>
+      <p>Εξατομικευμένα ταμπλό και λύσεις ενσωμάτωσης για επιχειρήσεις.</p>
+    </div>
+  </div>
+</section>
+<div class="tags-list">
+   <div class="inner">
+  <diV class="tag"><span></span>HTML5</diV>
+  <diV class="tag"><span></span>CSS</diV>
+  <diV class="tag"><span></span> SCRIPT JS</diV>
+  <diV class="tag"><span></span> JAVA</diV>
+  <diV class="tag"><span></span>PHP</diV>
+  <diV class="tag"><span></span>python</diV>
+  <diV class="tag"><span></span>CSS</diV>
+  <diV class="tag"><span></span> Node JS</diV>
+  <diV class="tag"><span></span> My Sql</diV>
+  <diV class="tag"><span></span>PHP</diV>
+     </div>
+    <div class="fade"></div>
+</div>
+<section id="tech">
+  <h2>Γλώσσες Προγραμματισμού & Τεχνολογίες</h2>
+  <div class="tech">
+    <div class="card" style="background: red; color: aliceblue;">HTML5</div>
+    <div class="card"  style="background: blue; color: aliceblue;">CSS3</div>
+    <div class="card"  style="background: rgba(199, 199, 22, 0.856); color: aliceblue;">JavaScript</div>
+    <div class="card"  style="background: rgba(199, 199, 22, 0.856); color: aliceblue;">Node.js</div>
+    <div class="card"  style="background: rebeccapurple; color: aliceblue;">PHP</div>
+    <div class="card"  style="background: linear-gradient(65deg,#0008e9ea,#fbff00); color: aliceblue;">Python</div>
+    <div class="card"  style="background: red; color: aliceblue;">MySQL</div>
+  </div>
+</section>
+<section id="pricing" class="pricing">
+  <h2>Πακέτα τιμών</h2>
+  <div class="pricing-cards">
+    <div class="card-basic">
+      <h3>Basic Package</h3>
+      <p class="price">€300</p>
+      <p>✔ 3 Pages Website</p>
+      <p>✔ Responsive Design</p>
+      <p>✔ Contact Form</p>
+      <button type="button" onclick="selectPackage('Basic')">Choose Plan</button>
+    </div>
+    <div class="card-standard">
+      <h3>Standard Package</h3>
+      <p class="price-1">€600</p>
+      <p>✔ 7 Pages Website</p>
+      <p>✔ Responsive Design</p>
+      <p>✔ Contact Form + CMS</p>
+      <button type="button" onclick="selectPackage('Standard')">Choose Plan</button>
+    </div>
+    <div class="card-premium">
+      <h3>Premium Package</h3>
+      <p class="price-2">€1000</p>
+      <p>✔ Unlimited Pages</p>
+      <p>✔ Responsive Design</p>
+      <p>✔ CMS + Custom Features</p>
+      <button type="button" onclick="selectPackage('Premium')">Choose Plan</button>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <h2 style=" color: rgb(0, 0, 0);
+  font-weight: 800; text-align: center; margin: 2%;">Επικοινώνησε Μαζί μου</h2>
+  <form action="https://formspree.io/f/mldlrpgv" method="POST" id="Form">
+    <label for="name">Όνομα</label>
+    <input type="text" id="name" required>
+    <label for="email">Gmail</label>
+    <input type="email" id="email" required>
+    <label for="message">Μήνυμα</label>
+    <textarea id="message" rows="5" required placeholder="Επίλεξε ένα απο τα παρακάτω πακέτα κατά την υποβολή του μήνυματος"></textarea>
+     <div class="price-package">
+  <button type="button" style="background-color: green;" onclick="selectPackage('Basic')">Basic</button>
+  <button type="button" style="background-color: goldenrod;" onclick="selectPackage('Standard')">Standard</button>
+  <button type="button" style="background-color: red;" onclick="selectPackage('Premium')">Premium</button>
+</div>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+<footer>
+  <p class="text-gray-400">© 2025 FrontDev. Όλα τα δικαιώματα διατηρούνται</p>
+  <p>Creator by FrontDev</p>
+</footer>
 </body>
+<script src="index.js" defer></script>
 </html>
